@@ -6,6 +6,8 @@
   let tableHeader = [];
   let tableBody = [];
   let tableFooter = [];
+  let columnValue = 0;
+
   let COLUMNS_LENGTH = 0;
 
   function findUniqueValues(field, parameter) {
@@ -45,46 +47,42 @@
     }
   }
 
+  const countItemValue = (i, j, tableBody) => {
+    if (uniqueColumns[j - 1] === "Total Value") {
+      tableBody[i].push(columnValue === 0 ? " " : columnValue);
+      tableFooter[j] += columnValue;
+    } else {
+      let currentItemValue = 0;
+      $data.map(item => {
+        if (
+          item[columns[0]] === uniqueColumns[j - 1] &&
+          item[rows[0]] === uniqueRows[i]
+        ) {
+          currentItemValue +=
+            typeof values[0] === "number" ? item[values[0]] : 1;
+        }
+      });
+
+      columnValue += currentItemValue;
+      tableFooter[j] += currentItemValue;
+      tableBody[i].push(currentItemValue === 0 ? " " : currentItemValue);
+    }
+  }
+
   function createTableBody() {
     if (uniqueColumns.length && uniqueRows.length) {
       const BODY_ROWS_LENGTH = uniqueRows.length;
-      tableFooter = new Array(COLUMNS_LENGTH);
+      tableFooter = new Array(COLUMNS_LENGTH).fill(0);
 
       for (let i = 0; i < BODY_ROWS_LENGTH; i++) {
         tableBody[i] = [];
-
-        let columnValue = 0;
+        
         for (let j = 0; j < COLUMNS_LENGTH; j++) {
           if (j === 0) {
             tableBody[i].push(uniqueRows[i]);
             tableFooter[j] = "Grand Total";
           } else {
-            if (tableFooter[j] === undefined) {
-              tableFooter[j] = 0;
-            }
-            if (uniqueColumns[j - 1] === "Total Value") {
-              tableBody[i].push(columnValue === 0 ? " " : columnValue);
-              tableFooter[j] += columnValue;
-            } else {
-              let currentItemValue = 0;
-              $data.map(item => {
-
-                if (
-                  item[columns[0]] === uniqueColumns[j - 1] &&
-                  item[rows[0]] === uniqueRows[i]
-                ) {
-                  currentItemValue +=
-                    typeof values[0] === "number" ? item[values[0]] : 1;
-                }
-              });
-
-              columnValue += currentItemValue;
-              tableFooter[j] += currentItemValue;
-              
-              tableBody[i].push(
-                currentItemValue === 0 ? " " : currentItemValue
-              );
-            }
+            countItemValue(i, j, tableBody);
           }
         }
         columnValue = 0;
