@@ -1,21 +1,14 @@
 <script>
-	import Table from './Table.svelte';
+  import { Router, Link, Route } from "svelte-routing";
+  import HomePage from "../src/pages/HomePage.svelte";
+  import { data } from "./store.js";
+  import PivotTablePage from "../src/pages/PivotTablePage.svelte";
+
+  export let url = "";
 </script>
 
-<style>
-	.App {
-		width: 100%;
-		height: 100%;
-		text-align: center;
-	}
-
-	h1 {
-		color: purple;
-	}
-</style>
-
-<div class="App">
-	<h1>Pivot Table</h1>
-	<Table />
-</div>
-
+<Router {url}>
+  <Route path="/" component="{HomePage}" />
+  <Route path="/pivot-table" component="{PivotTablePage}" />
+  <Route path="*" component="{HomePage}" />
+</Router>
