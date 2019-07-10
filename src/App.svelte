@@ -1,11 +1,14 @@
 <script>
-	export let name;
+  import { Router, Route } from "svelte-routing";
+  import HomePage from "../src/pages/HomePage.svelte";
+  import PivotTablePage from "../src/pages/PivotTablePage.svelte";
+
+  export let url = "";
+  
 </script>
 
-<style>
-	h1 {
-		color: purple;
-	}
-</style>
-
-<h1>Hello {name}!</h1>
+<Router {url}>
+  <Route path="/" component="{HomePage}" />
+  <Route path="/pivot-table" component="{PivotTablePage}" />
+  <Route path="*" component="{HomePage}" />
+</Router>
