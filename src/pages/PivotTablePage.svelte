@@ -1,127 +1,104 @@
 <script>
   import { filters, columns, rows, values, data } from "../store.js";
-
-  let uniqueRows = findUniqueValues(rows[0]);
-  let uniqueColumns = findUniqueValues(columns[0], "columns");
-  let tableHeader = [];
-  let tableBody = [];
-  let tableFooter = [];
-  let columnValue = 0;
-
-  let COLUMNS_LENGTH = 0;
-
-  function findUniqueValues(field, parameter) {
-    let uniqueValues = new Set();
-    let uniqueAndSortedData;
-    $data.map(current => uniqueValues.add(current[field]), []);
-
-    $data.length && typeof $data[0][field] === "number"
-      ? (uniqueAndSortedData = [...uniqueValues].sort((a, b) => a - b))
-      : (uniqueAndSortedData = [...uniqueValues].sort());
-
-    parameter === "columns" && uniqueAndSortedData.push("Total Value");
-
-    return uniqueAndSortedData;
-  }
-
-  function createTableHeader() {
-    if (uniqueColumns.length && uniqueRows.length) {
-      COLUMNS_LENGTH = uniqueColumns.length + 1;
-      const HEADER_ROWS_LENGTH = 2;
-
-      for (let i = 0; i < HEADER_ROWS_LENGTH; i++) {
-        tableHeader[i] = [];
-
-        for (let j = 0; j < COLUMNS_LENGTH; j++) {
-          if (i === 0) {
-            j === 1
-              ? (tableHeader[i][j] = "Columns Label")
-              : tableHeader[i].push(" ");
-          } else {
-            i === 1 && j === 0
-              ? (tableHeader[i][j] = "Rows Label")
-              : tableHeader[i].push(uniqueColumns[j - 1]);
-          }
-        }
-      }
-    }
-  }
-
-  const countItemValue = (i, j, tableBody) => {
-    if (uniqueColumns[j - 1] === "Total Value") {
-      tableBody[i].push(columnValue === 0 ? " " : columnValue);
-      tableFooter[j] += columnValue;
-    } else {
-      let currentItemValue = 0;
-      $data.map(item => {
-        if (
-          item[columns[0]] === uniqueColumns[j - 1] &&
-          item[rows[0]] === uniqueRows[i]
-        ) {
-          currentItemValue +=
-            typeof values[0] === "number" ? item[values[0]] : 1;
-        }
-      });
-
-      columnValue += currentItemValue;
-      tableFooter[j] += currentItemValue;
-      tableBody[i].push(currentItemValue === 0 ? " " : currentItemValue);
-    }
-  }
-
-  function createTableBody() {
-    if (uniqueColumns.length && uniqueRows.length) {
-      const BODY_ROWS_LENGTH = uniqueRows.length;
-      tableFooter = new Array(COLUMNS_LENGTH).fill(0);
-
-      for (let i = 0; i < BODY_ROWS_LENGTH; i++) {
-        tableBody[i] = [];
-        
-        for (let j = 0; j < COLUMNS_LENGTH; j++) {
-          if (j === 0) {
-            tableBody[i].push(uniqueRows[i]);
-            tableFooter[j] = "Grand Total";
-          } else {
-            countItemValue(i, j, tableBody);
-          }
-        }
-        columnValue = 0;
-      }
-    }
-  }
-
-  createTableHeader();
-  createTableBody();
+  import { Link } from "svelte-routing";
+  import PivotTable from "../components/PivotTable.svelte";
+  
 </script>
 
 <style>
-  .table-container {
-    margin: 30px;
+  .pivot-table-page {
+    width: 100%;
+    height: 100%;
+    /* padding: 30px; */
   }
+
+  h1 {
+    text-align: center;
+  }
+
+  .table-container {
+    display: flex;
+    width: 100%;
+    height: calc(100% - 89px);
+  }
+
+  h1 {
+    color: purple;
+    padding: 20px;
+    margin: 0;
+  }
+  .table {
+    padding: 10px 30px;
+    width: 95%;
+    height: 97%;
+    overflow: auto;
+  }
+
+  /* .filters {
+    padding: 30px;
+    text-align: left;
+    width: 35%;
+    height: 90%;
+    border: 3px solid orange;
+  } */
+
+  /* .heading {
+    font-size: 22px;
+  }
+
+  .para {
+    padding: 10px 0;
+  }
+
+  .pivot-table-combiner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+
+  .pivot-table-filter-field{
+    width:50%;
+    height: 200px;
+  } */
 </style>
 
-<div class="table-container">
-  <table>
-    {#each tableHeader as tableHeaderRow}
-      <tr>
-        {#each tableHeaderRow as item}
-          <th>{item}</th>
-        {/each}
-      </tr>
-    {/each}
+<div class="pivot-table-page">
+  <header>
+    <Link to="/">
+      <h1>Table</h1>
+    </Link>
+  </header>
 
-    {#each tableBody as tableBodyRow}
-      <tr>
-        {#each tableBodyRow as bodyItem}
-          <td>{bodyItem}</td>
-        {/each}
-      </tr>
-    {/each}
+  <div class="table-container">
+    <div class="table">
+      <PivotTable {filters} {columns} {rows} {values} {data} />
+    </div>
+    <!-- <div class="filters"> -->
+      <!-- <div class="heading">PivotTable Filters</div>
+      <div class="para">Choose fields to add to report</div>
+      <div class="checkboxes">
 
-    <tr>
-      {#each tableFooter as footerItem}
-        <th>{footerItem}</th>
-      {/each}
-    </tr>
-  </table>
+        <label for="horns">
+          <input type="checkbox" id="horns" name="horns" />
+          Horns
+        </label>
+        <label for="horns">
+          <input type="checkbox" id="horns" name="horns" />
+          Horns
+        </label>
+        <label for="horns">
+          <input type="checkbox" id="horns" name="horns" />
+          Horns
+        </label>
+      </div>
+      <div class="para">Choose fields in areas below</div>
+
+      <div class="pivot-table-combiner">
+        <div class="pivot-table-filter-field">Filters</div>
+        <div class="pivot-table-filter-field">Columns</div>
+        <div class="pivot-table-filter-field">Rows</div>
+        <div class="pivot-table-filter-field">Values</div>
+      </div> -->
+    <!-- </div> -->
+  </div>
 </div>

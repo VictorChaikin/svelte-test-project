@@ -1,10 +1,10 @@
 <script>
-  import { Router, Link, Route } from "svelte-routing";
+  import { Router, Route } from "svelte-routing";
   import HomePage from "../src/pages/HomePage.svelte";
-  import { data } from "./store.js";
   import PivotTablePage from "../src/pages/PivotTablePage.svelte";
 
   export let url = "";
+  
 </script>
 
 <Router {url}>

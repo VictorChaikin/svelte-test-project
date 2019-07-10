@@ -25,7 +25,7 @@ export default {
 		}),
 
 		json({
-			include: 'node_modules/**',
+			include: ['node_modules/**', 'src/data/data.json'],
 			exclude: ['node_modules/foo/**', 'node_modules/bar/**'],
 			preferConst: true, 
 			indent: '  ',

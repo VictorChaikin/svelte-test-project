@@ -3,6 +3,7 @@
   import Table from "../components/Table.svelte";
   import { faChevronCircleDown } from "@fortawesome/free-solid-svg-icons/faChevronCircleDown";
   import { Link } from "svelte-routing";
+  import { data } from "../store.js";
 
   let showPivotTableFields = false;
   const openOrClowePivotFieldsLabel = () => {
@@ -27,32 +28,15 @@
   h1 {
     color: purple;
   }
-
-  .circle-down-icon {
-    margin-left: 10px;
-    font-size: 1.5em;
-    color: blue;
-  }
-
-  .label {
-    display: flex;
-    cursor: pointer;
-  }
 </style>
 
 <div class="App">
   <div class="header">
-    <Link to="/pivot-table">Current Pivot Table</Link>
-    <h1>Pivot Table</h1>
-
-    <Link to="/">
-      Pivot Table fields
-      <div class="circle-down-icon">
-        <Icon icon={faChevronCircleDown} />
-      </div>
+    <Link to="/pivot-table">
+      <h1>Current Pivot Table</h1>
     </Link>
-
+    <!-- <Link to="/"><h1>Pivot Table</h1></Link> -->
   </div>
 
-  <Table />
+  <Table {data} />
 </div>

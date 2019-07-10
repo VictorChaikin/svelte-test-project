@@ -1,7 +1,9 @@
-import { writable } from "svelte/store";
+// import { writable } from 'svelte/store';
+import jsonData from '../src/data/data.json';
 
-export const filters = ["gender"];
-export const columns = ["eyeColor"];
-export const rows = ["age"];
-export const values = ["name"];
-export const data = writable([]);
+export const filters = ['gender'];
+export const columns = ['customer_name'];
+export const rows = ['city'];
+export const values = ['salseperson'];
+export const data = jsonData;
+
