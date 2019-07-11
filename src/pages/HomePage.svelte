@@ -26,6 +26,7 @@
 </style>
 
 <div class="App">
+
   <div class="header">
     <Link to="/pivot-table">
       <h1>Current Pivot Table</h1>
@@ -33,4 +34,5 @@
   </div>
 
   <Table {data} />
+  
 </div>

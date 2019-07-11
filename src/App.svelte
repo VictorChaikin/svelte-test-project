@@ -4,7 +4,6 @@
   import PivotTablePage from "../src/pages/PivotTablePage.svelte";
 
   export let url = "";
-  
 </script>
 
 <Router {url}>
