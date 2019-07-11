@@ -2,8 +2,8 @@
 import jsonData from '../src/data/data.json';
 
 export const filters = ['gender'];
-export const columns = ['customer_name'];
-export const rows = ['city'];
-export const values = ['salseperson'];
+export const columns = ['city'];
+export const rows = ['salesperson'];
+export const values = ['revenue'];
 export const data = jsonData;
 

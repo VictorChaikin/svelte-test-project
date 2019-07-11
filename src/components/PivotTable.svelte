@@ -63,7 +63,8 @@
           item[rows[0]] === uniqueRows[i]
         ) {
           currentItemValue +=
-            typeof values[0] === "number" ? item[values[0]] : 1;
+            typeof item[values[0]] === "number" ? item[values[0]] : 1;
+            console.log(item[values[0]]);
         }
       });
 

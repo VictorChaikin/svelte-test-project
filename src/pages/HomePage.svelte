@@ -5,11 +5,6 @@
   import { Link } from "svelte-routing";
   import { data } from "../store.js";
 
-  let showPivotTableFields = false;
-  const openOrClowePivotFieldsLabel = () => {
-    let previous = showPivotTableFields;
-    showPivotTableFields = !previous;
-  };
 </script>
 
 <style>
@@ -35,7 +30,6 @@
     <Link to="/pivot-table">
       <h1>Current Pivot Table</h1>
     </Link>
-    <!-- <Link to="/"><h1>Pivot Table</h1></Link> -->
   </div>
 
   <Table {data} />
