@@ -6,13 +6,7 @@
   export let values;
 
   import { createTable } from "../logic/pivotTableLogic.js";
-  const [header, body, footer] = createTable(
-    columns,
-    rows,
-    filters,
-    values,
-    data
-  );
+  const [header, body, footer] = createTable( columns, rows, filters, values, data );
 </script>
 
 <table>
@@ -33,8 +27,10 @@
   {/each}
 
   <tr>
-    {#each footer as footerItem}
-      <th>{footerItem}</th>
+    {#each footer as footerRow}
+      {#each footerRow as footerItem}
+        <th>{footerItem}</th>
+      {/each}
     {/each}
   </tr>
 

@@ -10,13 +10,17 @@ function createColumns(columns, data) {
     const header = new Array(uniqueColumns.length).fill(' ');
     header[0] = 'Column Labels';
 
-    const headerColumns = [header, uniqueColumns];
-
-    return headerColumns;
+    return [header, uniqueColumns];
 }
 
 function createRows(rows, data) {
-    console.log(`Create Rows ${rows} ${data}`);
+    const uniqueRows = findUniqueValues(rows[0], data);
+    const uniqueRowsInNeccessaryFormat = [];
+    uniqueRows.map(item => {
+        uniqueRowsInNeccessaryFormat.push([item]);
+    });
+
+    return uniqueRowsInNeccessaryFormat;
 }
 
 function createTableValues(tableRows, tableColumns, data) {
@@ -24,8 +28,7 @@ function createTableValues(tableRows, tableColumns, data) {
 }
 
 function createColumnsSummary(columns, values, tableColumns, data) {
-    const summaryTitle = `Sum of ${values[0]}`;
-    const columnsSummary = [summaryTitle];
+    const columnsSummary = [];
 
     tableColumns[1].map((columnTitle) => {
         const currentItemValue = data.reduce((sum, dataItem) => {
@@ -39,67 +42,85 @@ function createColumnsSummary(columns, values, tableColumns, data) {
         columnsSummary.push(currentItemValue);
     });
 
-    return columnsSummary;
+    return [columnsSummary];
 }
 
-function createRowsSummary(columns, data) {
-    const summaryTitle = 'Grand Total';
-    const rowsSummary = data.reduce((sum, current) => (sum += current[columns[0]]), 0);
+function createRowsSummary(rows, rowsValues, values, data) {
+    const rowsSummary = rowsValues.map((value) => {
+        return [
+            data.reduce((sum, current) => {
+                if (current[rows[0]] === value[0]) {
+                    sum += current[values[0]];
+                }
 
-    return ['', summaryTitle, rowsSummary.toFixed(2)];
+                return sum;
+            }, 0).toFixed(2)
+        ];
+    }, []);
+    const totalOfRowsSum = data.reduce((sum, current) => (sum += current[values[0]]), 0);
+
+
+    return [...rowsSummary, [totalOfRowsSum.toFixed(2)]];
 }
 
-function createHeader(rows, columns, totalOfRows) {
-    const headerArray = [];
-    const rowsLength = 1;
-    const finalTitle = 1;
-    const headerArrayLength = columns[0].length + rowsLength + finalTitle;
-    let rowsCounter = 0;
-    let columnsCounter = 0;
-    let totalOfRowsCounter = 0;
+function createTablePart(firstSubPart, secondSubPart, thirdSubPart) {
+    // console.log('Crate table part');
+    // console.log(firstSubPart);
+    // console.log(secondSubPart);
+    // console.log(thirdSubPart);
+
+    const finalPartArray = [];
+    const useFirstPart = firstSubPart[0];
+    const useSecondPart = secondSubPart[0];
+    const useThirdPart = thirdSubPart[0];
+
+    const firstPartLength = useFirstPart ? firstSubPart[0].length : 0;
+    const secondPartLength = useSecondPart ? secondSubPart[0].length : 0;
+    const thirdPartLength = useThirdPart ? thirdSubPart[0].length : 0;
 
 
-    for (let i = 0; i < columns.length; i++) {
-        headerArray.push([]);
-        for (let j = 0; j < headerArrayLength; j++) {
-            if (j < rowsLength) {
-                headerArray[i].push(rows[rowsCounter]);
-                rowsCounter++;
-            } else if (j >= rowsLength && j <= columns[i].length) {
-                headerArray[i].push(columns[i][columnsCounter]);
-                columnsCounter++;
-            } else {
-                headerArray[i].push(totalOfRows[totalOfRowsCounter]);
-                totalOfRowsCounter++;
+    const currentPartLength = firstPartLength + secondPartLength + thirdPartLength;
+    const currentPartHeight = Math.max(firstSubPart.length, secondSubPart.length, thirdSubPart.length);
+
+    // console.log(`currentPartLength = ${currentPartLength}`);
+    // console.log(`currentPartHeight ${currentPartHeight}`);
+
+    let firstSubPartCounter = 0;
+    let secondSubPartCounter = 0;
+    let thirdSubPartCounter = 0;
+
+
+    for (let i = 0; i < currentPartHeight; i++) {
+        // console.log(`i = ${i}`);
+        finalPartArray.push([]);
+        for (let j = 0; j < currentPartLength; j++) {
+            // console.log(`j = ${j}`);
+
+            if (useFirstPart && j < firstPartLength) {
+                // console.log('First Part');
+                finalPartArray[i].push(firstSubPart[i][firstSubPartCounter]);
+                firstSubPartCounter++;
+            }
+            if (useSecondPart && j >= firstPartLength && j < firstPartLength + secondPartLength) {
+                // console.log('Second part');
+                finalPartArray[i].push(secondSubPart[i][secondSubPartCounter]);
+                secondSubPartCounter++;
+            }
+            if (useThirdPart && j >= firstPartLength + secondPartLength) {
+                // console.log('Third part');
+                finalPartArray[i].push(thirdSubPart[i][thirdSubPartCounter]);
+                thirdSubPartCounter++;
             }
         }
 
-        columnsCounter = 0;
+        firstSubPartCounter = 0;
+        secondSubPartCounter = 0;
+        thirdSubPartCounter = 0;
+        // console.log('_______________');
     }
 
-    return headerArray;
-}
-
-function createBody(rows, tableValues, totalOfRows) {
-    console.log('Body');
-    return [];
-}
-
-function createFooter(totalOfColumns, totalOfRows) {
-    const footerArray = [];
-    const finalSum = 1;
-    const footerArrayLength = totalOfColumns.length + finalSum;
-
-
-    for (let j = 0; j < footerArrayLength; j++) {
-        if (j < totalOfColumns.length) {
-            footerArray.push(totalOfColumns[j]);
-        } else {
-            footerArray.push(totalOfRows[2]);
-        }
-    }
-
-    return footerArray;
+    // console.log(finalPartArray);
+    return finalPartArray;
 }
 
 function createFinalTable(columnValues, rowValues, tableValues, totalOfColumns, totalOfRows) {
@@ -107,16 +128,27 @@ function createFinalTable(columnValues, rowValues, tableValues, totalOfColumns, 
     let body = [];
     let footer = [];
 
-    if (columnValues.length) {
-        const defaultRows = new Array(columnValues.length).fill(' ');
-
-        // console.log(defaultRows);
+    if (columnValues.length && !rowValues.length) {
+        // console.log('We are here');
         // console.log(columnValues);
+        // console.log(rowValues);
+        // console.log(tableValues);
         // console.log(totalOfColumns);
         // console.log(totalOfRows);
+        const rowsHeader = [[''], ['']];
+        const tableResultHeader = [[''], ['Grand Total']];
 
-        header = createHeader(defaultRows, columnValues, totalOfRows);
-        footer = createFooter(totalOfColumns, totalOfRows);
+        header = createTablePart(rowsHeader, columnValues, tableResultHeader);
+        footer = createTablePart([['Sum of revenue']], totalOfColumns, totalOfRows);
+    }
+
+    if (rowValues.length && !columnValues.length) {
+        const rowsHeader = [['Rows Labels']];
+        const tableResultHeader = [['Sum of revenue']];
+
+        header = createTablePart(rowsHeader, columnValues, tableResultHeader);
+        body = createTablePart(rowValues, tableValues, totalOfRows.slice(0, rowValues.length));
+        footer = createTablePart([['Grand Total']], totalOfColumns, [totalOfRows[totalOfRows.length - 1]]);
     }
 
     return [header, body, footer];
@@ -124,22 +156,23 @@ function createFinalTable(columnValues, rowValues, tableValues, totalOfColumns, 
 
 export function createTable(columns, rows, filters, values, data) {
     let columnValues = [];
-    const rowValues = [];
+    let rowValues = [];
     const tableValues = [];
     let totalOfColumns = [];
     let totalOfRows = [];
+    // const finalArray = [];
 
     if (columns.length && !rows.length) {
         columnValues = createColumns(columns, data);
         totalOfColumns = createColumnsSummary(columns, values, columnValues, data);
-        totalOfRows = createRowsSummary(values, data);
+        totalOfRows = createRowsSummary(rows, rowValues, values, data);
     }
 
     if (rows.length && !columns.length) {
-        createRows();
-        totalOfColumns = createColumnsSummary();
-        createRowsSummary();
+        rowValues = createRows(rows, data);
+        totalOfRows = createRowsSummary(rows, rowValues, values, data);
     }
+
     if (columns.length && rows.length) {
         createTableValues();
     }
