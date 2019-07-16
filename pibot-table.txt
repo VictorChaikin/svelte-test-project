@@ -38,7 +38,7 @@ ________________________________________________________________________________
 
 function getTableData(configurator, jsonData, columns){
   configurator - prop from Pivot Table Component
-  jsoData - prop from Pivot Table Component
+  jsonData - prop from Pivot Table Component
   columns - prop from Pivot Table Component 
 
   IN 2D Array [
