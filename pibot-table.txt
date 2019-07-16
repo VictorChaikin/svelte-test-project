@@ -38,10 +38,10 @@ ________________________________________________________________________________
 
 function getTableData(configurator, jsonData, columns){
   configurator - prop from Pivot Table Component
-  json - prop from Pivot Table Component
+  jsoData - prop from Pivot Table Component
   columns - prop from Pivot Table Component 
 
-  IN 2D Arry [
+  IN 2D Array [
     [
       '' - COLUMN,
       '' - COLUMN,
@@ -52,7 +52,7 @@ function getTableData(configurator, jsonData, columns){
   [''] - store only one column
   ['', ''] - store 1 and more columns
   '' - store only one value
-  
+
   return {
     rowsTitle: [
       [''], ['']
