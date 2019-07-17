@@ -7,7 +7,8 @@ Prop types :
 configurator = {
   values : [] - only fields from jsonData object in string format,
   filters: [] - only fields from jsonData object in string format,
-  rows: [] - only fields from jsonData object in string format
+  rows: [] - only fields from jsonData object in string format,
+  columns: [] - only fields from jsonData object in string format
 },
 
 jsonData = [
@@ -24,14 +25,14 @@ Predefined object {
   iconSide: left - string only
 }
 
-Predefined Objects : [
+Predefined Objects : {
   number : {textAlign: right, icon: null, iconSide: null},
   currency : {textAlign: right, icon: $, iconSide: left},
   date: {textAlign: left, icon: null, iconSide: null},
   time: {textAlign: left, icon: null, iconSide: null},
   Percentage: {textAlign: left, icon: %, iconSide: right},
   text: {textAlign: left, icon: null, iconSide: null}
-]
+}
 
 Date-out : HeaderComponent, BodyComponent, FooterComponent
 ___________________________________________________________________________________
@@ -87,3 +88,53 @@ function getTableData(configurator, jsonData, columns){
     grandTotal: ''
   };
 }
+
+EXAMPLES 
+
+const configurator = {
+  values : ['revenue'],
+  filters: [],
+  rows: [] ,
+  columns: ['state']
+};
+
+const jsonData = [
+// Data from local json
+];
+
+const columns = {
+    state: { textAlign: 'left', icon: null, iconSide: null, type: 'string' },
+    revenue: { textAlign: 'right', icon: '$', iconSide: 'left', type: 'number' }
+};
+
+let pivotTable = getTableData(configurator, jsonData, columns);
+
+pivotTable - {
+
+  rowsTitle: [
+    [''], ['']
+  ],
+
+  columnsTitle: [
+    ['Columns Label', '', '', '', '', '', '', '', '', '', '', '']
+  ],
+
+  uniqueColumnsValue: [
+    ['CA', 'CO',	'FL',	'ID',	'IL',	'NV',	'NY',	'OR',	'TN',	'UT',	'WA',	'WI']
+  ],
+
+  verticalTotalTitle: [
+    [''], ['Grand Total']
+  ],
+
+  uniqueRowsValues: [],
+
+  tableValues: [  ],
+
+  rowsTotalValues: [],
+
+  horizontalTotalTitle: 'Sum of revenue',
+  columnTotalValues: [2544.73, 2464.65, 7780.57, 4543.00, 8278.07, 5524.75, 15329.30, 6929.45, 10954.70, 2612.00, 6594.03, 8327.75 ],
+  grandTotal: ''
+  
+};
