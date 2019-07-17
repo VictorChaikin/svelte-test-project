@@ -123,7 +123,7 @@ pivotTable - {
   ],
 
   uniqueColumnsValue: [
-    [{label : 'CA'}, {label:'CO'},	{label:'FL'},	{label:'ID'},	{label:'IL'},	{label:'NV'},	{label:'NY'},	{label:'OR'},	{label:'TN'},	{label:'UT'},	{label:'WA'},	{label:'WI'}]
+    [{label : 'CA'}, {label:'CO'}, {label:'FL'}, {label:'ID'}, {label:'IL'}, {label:'NV'}, {label:'NY'}, {label:'OR'}, {label:'TN'}, {label:'UT'}, {label:'WA'}, {label:'WI'}]
   ],
 
   verticalTotalTitle: [
@@ -269,13 +269,13 @@ pivotTable - {
 
   rowsTotalValues: [
     [15329.30, 8, 502.20 ],
-    [18735.27, 12,	502.20 ],
-    [2464.65,	4,	159.90 ],
-    [8278.07,	8,	210.00 ],
+    [18735.27, 12, 502.20 ],
+    [2464.65,	4, 159.90 ],
+    [8278.07,	8, 210.00 ],
     [8069.48,	10,	280.60 ],
-    [8327.75,	7,	360.40 ],
-    [18066.48, 13,	377.20 ],
-    [2612.00,	3,	165.75 ]
+    [8327.75,	7, 360.40 ],
+    [18066.48, 13, 377.20 ],
+    [2612.00,	3, 165.75 ]
   ],
 
   horizontalTotalTitle: 'Grand Total',
@@ -319,7 +319,7 @@ pivotTable - {
   ],
 
   uniqueColumnsValue: [
-    [{ label: 'Company AA' },	{ label: 'Company BB' },	{ label: 'Company C' },	{ label: 'Company CC' },	{ label: 'Company D' },	{ label: 'Company F' },	{ label: 'Company G' },	{ label: 'Company H' },	{ label: 'Company I' },	{ label: 'Company J' },	{ label: 'Company K' },	{ label: 'Company L' },	{ label: 'Company Y' },	{ label: 'Company Z' }]
+    [{ label: 'Company AA' },	{ label: 'Company BB' }, { label: 'Company C' }, { label: 'Company CC' },	{ label: 'Company D' },	{ label: 'Company F' },	{ label: 'Company G' },	{ label: 'Company H' },	{ label: 'Company I' },	{ label: 'Company J' },	{ label: 'Company K' },	{ label: 'Company L' },	{ label: 'Company Y' },	{ label: 'Company Z' }]
   ],
 
   verticalTotalTitle: ['
@@ -372,7 +372,7 @@ pivotTable - {
   ],
 
   horizontalTotalTitle: 'Grand Total',
-  columnTotalValues: [6594.03,	852,	10954.7,	2544.73,	2464.65,	15329.3,	8327.75,	4543,	6929.45,	2612,	5660.07,	3618.02,	4672.75,	2618,	4162.55],
+  columnTotalValues: [6594.03, 852,	10954.7, 2544.73,	2464.65, 15329.3,	8327.75, 4543, 6929.45, 2612, 5660.07, 3618.02, 4672.75, 2618, 4162.55],
   grandTotal: '81883'
   
 };
@@ -536,13 +536,13 @@ pivotTable - {
   tableValues: [ 
     ['', '', '', '', 637,	1, 637,	1, '', '','', '','', '','', '','', '','', ''],20
     ['', '', '', '', 637,	1, 637,	1, '', '','', '','', '','', '','', '','', ''],
-    ['', '','', '','', '','', '','', '','', '', 810,	1,	810,	1,	990,	1,	990,	1],
+    ['', '','', '','', '','', '','', '','', '', 810, 1,	810, 1,	990, 1,	990, 1],
     ['', '','', '','', '','', '','', '','', '', 810,	1,	810,	1, '', '', '', ''],
     ['', '','', '','', '','', '','', '','', '', '', '', '', '', 990,	1,	990,	1],
-    [490,	1,	490,	1, '', '','', '','', '','', '','', '','', '', '', '', '', ''],
-    [490,	1,	490,	1, '', '','', '','', '','', '','', '','', '', '', '', '', ''],
-    ['','', '','', '','', '','', 637,	1,	637,	1,'','', '','', '','', '','' ],
-    ['','', '','', '','', '','', 637,	1,	637,	1,'','', '','', '','', '','' ],
+    [490,	1, 490,	1, '', '','', '','', '','', '','', '','', '', '', '', '', ''],
+    [490,	1, 490,	1, '', '','', '','', '','', '','', '','', '', '', '', '', ''],
+    ['','', '','', '','', '','', 637,	1, 637,	1,'','', '','', '','', '','' ],
+    ['','', '','', '','', '','', 637,	1, 637,	1,'','', '','', '','', '','' ],
    ],
 
   rowsTotalValues: [
@@ -558,7 +558,7 @@ pivotTable - {
   ],
 
   horizontalTotalTitle: 'Grand Total',
-  columnTotalValues: [490,	1,	490,	1,	637,	1,	637,	1,	637,	1,	637,	1,	810,	1,	810,	1,	990,	1,	990,	1],
+  columnTotalValues: [490, 1,	490, 1,	637, 1, 637, 1,	637, 1,	637, 1,	810, 1,	810, 1, 990, 1,	990, 1],
   grandTotal: [ [3564,	5] ]
   
 };
