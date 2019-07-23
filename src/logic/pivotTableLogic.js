@@ -123,11 +123,11 @@ function getTotalSum(values, data) {
     return [totalSum];
 }
 
-function createTablePart(firstSubPart, secondSubPart, thirdSubPart) {
-    console.log('Crate table part');
-    console.log(firstSubPart);
-    console.log(secondSubPart);
-    console.log(thirdSubPart);
+export function createTablePart(firstSubPart, secondSubPart, thirdSubPart) {
+    // console.log('Crate table part');
+    // console.log(firstSubPart);
+    // console.log(secondSubPart);
+    // console.log(thirdSubPart);
 
     const finalPartArray = [];
     const useFirstPart = firstSubPart[0];
@@ -141,8 +141,8 @@ function createTablePart(firstSubPart, secondSubPart, thirdSubPart) {
 
     const currentPartLength = firstPartLength + secondPartLength + thirdPartLength;
     const currentPartHeight = Math.max(firstSubPart.length, secondSubPart.length, thirdSubPart.length);
-    console.log('PART HEIGHT');
-    console.log(currentPartHeight);
+    // console.log('PART HEIGHT');
+    // console.log(currentPartHeight);
 
     let firstSubPartCounter = 0;
     let secondSubPartCounter = 0;
@@ -161,7 +161,7 @@ function createTablePart(firstSubPart, secondSubPart, thirdSubPart) {
                 secondSubPartCounter++;
             }
             if (useThirdPart && j >= firstPartLength + secondPartLength) {
-                console.log(thirdSubPart[i]);
+                // console.log(thirdSubPart[i]);
                 finalPartArray[i].push(thirdSubPart[i][thirdSubPartCounter]);
                 thirdSubPartCounter++;
             }
@@ -267,3 +267,89 @@ export function createTable(columns, rows, filters, values, data) {
     // return [[], [], []];
 }
 
+let dimensionalArray = [];
+
+function transformColumnsToArray(arrayOfColumns) {
+    for (let i = 0; i < arrayOfColumns.length; i++) {
+        if (arrayOfColumns[i].subColumns) {
+            transformColumnsToArray(arrayOfColumns[i].subColumns, []);
+        }
+
+        if (dimensionalArray.length > 0) {
+            dimensionalArray.unshift([arrayOfColumns[i].label]);
+
+            const includesDif = dimensionalArray[dimensionalArray.length - 1].length - dimensionalArray[0].length;
+
+            for (let index = 0; index < includesDif; index++) {
+                dimensionalArray[0].push(' ');
+            }
+
+
+            dimensionalArray[0].push(...arrayOfColumns[i].total);
+            // console.log(dimensionalArray);
+
+            for (let j = 1; j < dimensionalArray.length; j++) {
+                dimensionalArray[j].length < dimensionalArray[0].length &&
+                    dimensionalArray[j].push(' ');
+            }
+        } else {
+            dimensionalArray.unshift([arrayOfColumns[i].label]);
+        }
+    }
+}
+
+function transformRowsToArray(arrayOfRows, subArray, field) {
+    for (let i = 0; i < arrayOfRows.length; i++) {
+        if (arrayOfRows[i][subArray]) {
+            transformRowsToArray(arrayOfRows[i][subArray], subArray, field);
+        }
+
+        dimensionalArray.unshift([arrayOfRows[i][field]]);
+    }
+}
+
+const tableValuesArray = [];
+
+function transformTableValuesToArray(arrayOfTableValues, subArray) {
+    for (let i = 0; i < arrayOfTableValues.length; i++) {
+        transformRowsToArray(arrayOfTableValues, subArray, 'value');
+        tableValuesArray.push(dimensionalArray);
+        dimensionalArray = [];
+
+        if (arrayOfTableValues[i].subRows) {
+            transformTableValuesToArray(arrayOfTableValues[i].subRows, subArray);
+        }
+    }
+
+}
+
+export function transfortObjectToArray(arrayOfObjects, type, field) {
+    dimensionalArray = [];
+
+    switch (type) {
+        case 'columns': {
+            console.log(arrayOfObjects);
+            transformColumnsToArray(arrayOfObjects);
+            const defaultColumns = new Array(dimensionalArray[0].length).fill(' ');
+            defaultColumns[0] = 'Columns Labels';
+
+            dimensionalArray.unshift(defaultColumns);
+        } break;
+        case 'rows': {
+            transformRowsToArray(arrayOfObjects, 'subRows', field);
+        } break;
+        case 'tableValues': {
+            transformTableValuesToArray(arrayOfObjects, 'subColumns');
+
+        } break;
+        case 'columnsTotal': {
+            transformRowsToArray(arrayOfObjects, 'subColumns', 'value');
+            const columnsTotalArray = [];
+            dimensionalArray.map(item => columnsTotalArray.push(...item));
+            dimensionalArray = columnsTotalArray;
+        } break;
+        default: console.log('Wrong type'); break;
+    }
+
+    return type === 'tableValues' ? tableValuesArray : dimensionalArray;
+}

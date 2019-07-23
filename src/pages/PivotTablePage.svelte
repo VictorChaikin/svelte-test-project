@@ -1,10 +1,8 @@
 <script>
-
-  import { filters, columns, rows, values, data } from "../store.js";
+  // import { filters, columns, rows, values, data } from "../store.js";
   import { Link } from "svelte-routing";
-  import PivotTable from "../components/PivotTable.svelte";
-  import PivotTableFilters from "../components/PivotTableFilters.svelte";
-  
+  import PivotTable from "../components/pivot-table/Table.svelte";
+  import PivotTableFilters from "../components/pivot-table/Filters.svelte";
 </script>
 
 <style>
@@ -46,10 +44,10 @@
 
   <div class="table-container">
     <div class="table">
-      <PivotTable {filters} {columns} {rows} {values} {data} />
+      <PivotTable />
     </div>
-    
+
     <!-- <PivotTableFilters /> -->
   </div>
-  
+
 </div>
