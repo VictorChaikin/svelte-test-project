@@ -1,8 +1,7 @@
 <script>
-  // import { filters, columns, rows, values, data } from "../store.js";
   import { Link } from "svelte-routing";
   import PivotTable from "../components/pivot-table/Table.svelte";
-  import PivotTableFilters from "../components/pivot-table/Filters.svelte";
+  import { examples, configurator } from "../store";
 </script>
 
 <style>
@@ -16,7 +15,7 @@
   }
 
   .table-container {
-    display: flex;
+    padding: 0 30px;
     width: 100%;
     height: calc(100% - 89px);
   }
@@ -27,9 +26,6 @@
     margin: 0;
   }
   .table {
-    padding: 10px 30px;
-    width: 95%;
-    height: 97%;
     overflow: auto;
   }
 </style>
@@ -43,11 +39,14 @@
   </header>
 
   <div class="table-container">
-    <div class="table">
-      <PivotTable />
-    </div>
-
-    <!-- <PivotTableFilters /> -->
+    {#each examples as example}
+      <div class="table">
+        <PivotTable data={example} {configurator} />
+      </div>
+      <div>
+        <h3>{example.title} Example</h3>
+      </div>
+    {/each}
   </div>
 
 </div>
