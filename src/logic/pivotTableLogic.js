@@ -1,66 +1,360 @@
-// function findUniqueValues(field, data, parameter) {
+// function findUniqueValues(field, data) {
 //     const uniqueValues = new Set();
-//     let uniqueAndSortedData;
 //     data.map(current => uniqueValues.add(current[field]), []);
 
-//     // if (data[0][field] === 'number') {
-//     //     (uniqueAndSortedData = [...uniqueValues].sort((a, b) => a - b))
-//     // } else {
-//     //     (uniqueAndSortedData = [...uniqueValues].sort());
-//     // }
-
-//     if (parameter === 'columns') {
-//         uniqueAndSortedData.push('Total Value');
-//     }
-
-//     return uniqueAndSortedData;
+//     return [...uniqueValues].sort();
 // }
 
-function createColumns(columns, data) {
-    console.log(`Create Columns ${columns} ${data}`);
-}
+// function getUniqueColumns(columns, data) {
+//     const uniqueColumns = findUniqueValues(columns[0], data);
 
-function createRows(rows, data) {
-    console.log(`Create Rows ${rows} ${data}`);
-}
+//     console.log('UNIQUE COLUMNS');
+//     console.log([uniqueColumns]);
+//     console.log('_ _ _ _ _ _ _ _ _');
 
-function createTableValues(tableRows, tableColumns, data) {
-    console.log(`Create Table Values ${tableRows},${tableColumns},${data}`);
-}
+//     return [uniqueColumns];
+// }
 
-function createColumnsSummary(tableColumns, data) {
-    console.log(`Crate Columns Summary ${tableColumns},${data}`);
-}
+// function getUniqueRows(rows, data) {
+//     const uniqueRows = findUniqueValues(rows[0], data);
+//     const uniqueRowsInNeccessaryFormat = uniqueRows.map(item => [item]);
 
-function createRowsSummary(tableValues, columnsSum) {
-    console.log(`Crate Rows Summary ${tableValues} ${columnsSum} `);
-}
+//     console.log('UNIQUE ROWS');
+//     console.log(uniqueRowsInNeccessaryFormat);
+//     console.log('_ _ _ _ _ _ _ _ _');
 
-function createFinalTable() {
-    console.log('Create Final Table');
-}
+//     return uniqueRowsInNeccessaryFormat;
+// }
 
-export function createTable(columns, rows, filters, values, data) {
-    const columnValues = [];
-    const rowValues = [];
-    const tableValues = [];
-    const totalOfColumns = [];
-    const totalOfRows = [];
+// function getTableValues(tableRows, tableColumns, rows, columns, values, data) {
+//     const tableValues = [];
 
-    if (columns.length) {
-        createColumns(data);
-        createColumnsSummary();
+//     for (let i = 0; i < tableRows.length; i++) {
+//         tableValues.push([]);
+//         for (let j = 0; j < tableColumns.length; j++) {
+//             let currentItemSum = data.reduce((sum, current) => {
+//                 // console.log(tableRows[i][0]);
+//                 // console.log(current[rows[0]]);
+//                 // console.log(tableColumns[j]);
+//                 // console.log(current[columns[0]]);
+//                 if (tableRows[i][0] === current[rows[0]] && tableColumns[j] === current[columns[0]]) {
+//                     sum += current[values[0]];
+//                 }
+
+//                 return sum;
+//             }, 0);
+
+//             currentItemSum = currentItemSum === 0 ? '' : currentItemSum;
+//             tableValues[i].push(currentItemSum);
+//         }
+//     }
+
+//     console.log('TABLE VALUES');
+//     console.log(tableValues);
+//     console.log('_ _ _ _ _ _ _ _ _');
+
+//     return tableValues;
+// }
+
+// function getColumnsSummary(columns, values, tableColumns, data) {
+//     const columnsSummary = [];
+//     console.log(tableColumns);
+
+//     tableColumns.map((columnTitle) => {
+//         let currentItemValue = data.reduce((sum, dataItem) => {
+//             if (dataItem[columns[0]] === columnTitle) {
+//                 sum += dataItem[values[0]];
+//             }
+
+//             return sum;
+//         }, 0);
+
+//         currentItemValue = (currentItemValue % 1 === 0) ? currentItemValue : currentItemValue.toFixed(2);
+//         columnsSummary.push(currentItemValue);
+//     });
+
+//     console.log('COLUMNS SUMMARY');
+//     console.log(columnsSummary);
+//     console.log('_ _ _ _ _ _ _ _ _');
+
+//     return [columnsSummary];
+// }
+
+// function getRowsSummary(rows, rowsValues, values, data) {
+//     const totalOfRows = [];
+
+//     for (let i = 0; i < values.length; i++) {
+//         const rowsSummary = rowsValues.map((value) => {
+//             let finalSum = data.reduce((sum, current) => {
+//                 if (current[rows[0]] === value[0]) {
+//                     sum += current[values[i]];
+//                 }
+
+//                 return sum;
+//             }, 0);
+
+//             finalSum = (finalSum % 1 === 0) ? finalSum : finalSum.toFixed(2);
+//             return [finalSum];
+//         }, []);
+
+//         totalOfRows.push(...rowsSummary);
+//     }
+
+//     console.log('ROWS SUMMARY');
+//     console.log(totalOfRows);
+//     console.log('_ _ _ _ _ _ _ _ _');
+
+//     return totalOfRows;
+// }
+
+// function getTotalSum(values, data) {
+//     const totalSum = [];
+
+//     for (let i = 0; i < values.length; i++) {
+//         let totalOfRowsSum = data.reduce((sum, current) => (sum += current[values[i]]), 0);
+//         totalOfRowsSum = (totalOfRowsSum % 1 === 0) ? totalOfRowsSum : totalOfRowsSum.toFixed(2);
+//         totalSum.push(totalOfRowsSum);
+//     }
+
+//     console.log('TOTAL SUM');
+//     console.log([totalSum]);
+//     console.log('_ _ _ _ _ _ _ _ _');
+
+//     return [totalSum];
+// }
+
+export function createTablePart(firstSubPart, secondSubPart, thirdSubPart) {
+    // console.log('Crate table part');
+    // console.log(firstSubPart);
+    // console.log(secondSubPart);
+    // console.log(thirdSubPart);
+
+    const finalPartArray = [];
+    const useFirstPart = firstSubPart[0];
+    const useSecondPart = secondSubPart[0];
+    const useThirdPart = thirdSubPart[0];
+
+    const firstPartLength = useFirstPart ? firstSubPart[0].length : 0;
+    const secondPartLength = useSecondPart ? secondSubPart[0].length : 0;
+    const thirdPartLength = useThirdPart ? thirdSubPart[0].length : 0;
+
+
+    const currentPartLength = firstPartLength + secondPartLength + thirdPartLength;
+    const currentPartHeight = Math.max(firstSubPart.length, secondSubPart.length, thirdSubPart.length);
+    // console.log('PART HEIGHT');
+    // console.log(currentPartHeight);
+
+    let firstSubPartCounter = 0;
+    let secondSubPartCounter = 0;
+    let thirdSubPartCounter = 0;
+
+    for (let i = 0; i < currentPartHeight; i++) {
+        finalPartArray.push([]);
+        for (let j = 0; j < currentPartLength; j++) {
+
+            if (useFirstPart && j < firstPartLength) {
+                finalPartArray[i].push(firstSubPart[i][firstSubPartCounter]);
+                firstSubPartCounter++;
+            }
+            if (useSecondPart && j >= firstPartLength && j < firstPartLength + secondPartLength) {
+                finalPartArray[i].push(secondSubPart[i][secondSubPartCounter]);
+                secondSubPartCounter++;
+            }
+            if (useThirdPart && j >= firstPartLength + secondPartLength) {
+                // console.log(thirdSubPart[i]);
+                finalPartArray[i].push(thirdSubPart[i][thirdSubPartCounter]);
+                thirdSubPartCounter++;
+            }
+        }
+
+        firstSubPartCounter = 0;
+        secondSubPartCounter = 0;
+        thirdSubPartCounter = 0;
     }
-    if (rows.length) {
-        createRows();
-        createRowsSummary();
-    }
-    if (columns.length && rows.length) {
-        createTableValues();
-    }
 
-    createFinalTable(columnValues, rowValues, tableValues, totalOfColumns, totalOfRows);
-
-    return [];
+    return finalPartArray;
 }
 
+// function createFinalTable(uniqueColumns, uniqueRows, tableValues, totalOfColumns, totalOfRows, totalSum) {
+//     let header = [];
+//     let body = [];
+//     let footer = [];
+
+//     if (uniqueColumns.length && !uniqueRows.length) {
+//         console.log('FIRST EXAMPLE');
+//         const tableResultHeader = [[''], ['Total value']];
+//         const defaultColumns = new Array(uniqueColumns[0].length).fill(' ');
+//         defaultColumns[0] = 'Columns Values';
+//         // const defaultRowsFooter = [['Grand Total']];
+//         const rowsHeader = [[''], ['']];
+//         // const tableResultHeader = [[''], ['Grand Total']];
+
+//         header = createTablePart(rowsHeader, [defaultColumns, ...uniqueColumns], tableResultHeader);
+//         footer = createTablePart([['Sum of revenue']], totalOfColumns, totalOfRows);
+//     }
+
+//     if (uniqueRows.length && !uniqueColumns.length) {
+//         console.log('SECOND EXAMPLE');
+//         const rowsHeader = [['Sum of revenue'], ['Rows Labels']];
+//         const tableResultHeader = [[''], ['Total value']];
+//         const defaultColumns = new Array(uniqueColumns[0].length).fill(' ');
+//         defaultColumns[0] = 'Columns Values';
+//         // const defaultRowsFooter = [['Grand Total']];
+//         // const rowsHeader = [['Rows Labels']];
+//         // const tableResultHeader = [['Sum of revenue']];
+
+//         header = createTablePart(rowsHeader, uniqueColumns, tableResultHeader);
+//         body = createTablePart(uniqueRows, tableValues, totalOfRows.slice(0, uniqueRows.length));
+//         footer = createTablePart([['Grand Total']], totalOfColumns, [totalOfRows[totalOfRows.length - 1]]);
+//     }
+
+//     if (uniqueRows.length && uniqueColumns.length) {
+//         console.log('THIRD EXAMPLE');
+//         const rowsHeader = [['Sum of revenue'], ['Rows Labels']];
+//         const tableResultHeader = [[''], ['Total value']];
+//         const defaultColumns = new Array(uniqueColumns[0].length).fill(' ');
+//         defaultColumns[0] = 'Columns Values';
+//         const defaultRowsFooter = [['Grand Total']];
+
+//         console.log([defaultColumns, ...uniqueColumns]);
+//         header = createTablePart(rowsHeader, [defaultColumns, ...uniqueColumns], tableResultHeader);
+//         body = createTablePart(uniqueRows, tableValues, totalOfRows);
+//         footer = createTablePart(defaultRowsFooter, totalOfColumns, totalSum);
+//     }
+
+//     return [header, body, footer];
+// }
+
+// export function createTable(columns, rows, filters, values, data) {
+//     let uniqueColumns = [];
+//     let uniqueRows = [];
+//     let tableValues = [];
+//     let totalOfColumns = [];
+//     let totalOfRows = [];
+//     let totalSum = [];
+
+//     if (columns.length && !rows.length) {
+//         uniqueColumns = getUniqueColumns(columns, data);
+//         totalOfColumns = getColumnsSummary(columns, values, uniqueColumns, data);
+//         totalOfRows = getRowsSummary(rows, uniqueRows, values, data);
+//     }
+
+//     if (rows.length && !columns.length && !values.length > 1) {
+//         uniqueRows = getUniqueRows(rows, data);
+//         totalOfRows = getRowsSummary(rows, uniqueRows, values, data);
+//     }
+
+//     if (rows.length && !columns.length && values.length > 1) {
+//         // console.log('Hello');
+//         uniqueRows = getUniqueRows(rows, data);
+//         totalOfRows = getRowsSummary(rows, uniqueRows, values, data);
+//     }
+
+//     if (columns.length && rows.length) {
+//         console.log('I am here');
+//         uniqueColumns = getUniqueColumns(columns, data);
+//         uniqueRows = getUniqueRows(rows, data);
+//         tableValues = getTableValues(uniqueRows, uniqueColumns[0], rows, columns, values, data);
+//         totalOfRows = getRowsSummary(rows, uniqueRows, values, data);
+//         totalOfColumns = getColumnsSummary(columns, values, uniqueColumns[0], data);
+//     }
+
+//     totalSum = getTotalSum(values, data);
+
+//     const finalArray = createFinalTable(uniqueColumns, uniqueRows, tableValues, totalOfColumns, totalOfRows, totalSum);
+
+//     return finalArray;
+//     // return [[], [], []];
+// }
+
+let dimensionalArray = [];
+let tableValuesArray = [];
+
+function transformColumnsToArray(arrayOfColumns, first) {
+    for (let i = 0; i < arrayOfColumns.length; i++) {
+        if (arrayOfColumns[i].subColumns) {
+            transformColumnsToArray(arrayOfColumns[i].subColumns);
+        }
+
+        if (dimensionalArray.length > 0) {
+            dimensionalArray.unshift([{ label: arrayOfColumns[i].label }]);
+
+            const includesDif = dimensionalArray[dimensionalArray.length - 1].length - dimensionalArray[0].length;
+
+            for (let index = 0; index < includesDif; index++) {
+                dimensionalArray[0].push({});
+            }
+
+            if (arrayOfColumns[i].total) {
+                for (let j = 0; j < arrayOfColumns[i].total.length; j++) {
+                    dimensionalArray[0].push({ label: arrayOfColumns[i].total[j] });
+                }
+            }
+
+            for (let j = 1; j < dimensionalArray.length; j++) {
+                if (dimensionalArray[j].length < dimensionalArray[0].length) {
+                    dimensionalArray[j].push({});
+                }
+            }
+        } else {
+            console.log(arrayOfColumns[i].label);
+            dimensionalArray.unshift([{ label: arrayOfColumns[i].label }]);
+        }
+
+        if (first) {
+            // console.log(dimensionalArray);
+            tableValuesArray.push(dimensionalArray);
+            dimensionalArray = [];
+        }
+    }
+}
+
+function transformRowsToArray(arrayOfRows, subArray, field) {
+    for (let i = 0; i < arrayOfRows.length; i++) {
+        if (arrayOfRows[i][subArray]) {
+            transformRowsToArray(arrayOfRows[i][subArray], subArray, field);
+        }
+
+        dimensionalArray.unshift([{ label: arrayOfRows[i][field] }]);
+    }
+}
+
+function transformTableValuesToArray(arrayOfTableValues, subArray) {
+    for (let i = 0; i < arrayOfTableValues.length; i++) {
+        transformRowsToArray(arrayOfTableValues, subArray, 'value');
+        console.log(dimensionalArray);
+        tableValuesArray.push(dimensionalArray);
+        dimensionalArray = [];
+
+        if (arrayOfTableValues[i].subRows) {
+            transformTableValuesToArray(arrayOfTableValues[i].subRows, subArray);
+        }
+    }
+}
+
+export function transfortObjectToArray(arrayOfObjects, type, field) {
+    dimensionalArray = [];
+    tableValuesArray = [];
+
+    switch (type) {
+        case 'columns': {
+            transformColumnsToArray(arrayOfObjects, true);
+        } break;
+        case 'rows': {
+            transformRowsToArray(arrayOfObjects, 'subRows', field);
+        } break;
+        case 'tableValues': {
+            transformTableValuesToArray(arrayOfObjects, 'subColumns');
+            break;
+        }
+        case 'columnsTotal': {
+            transformRowsToArray(arrayOfObjects, 'subColumns', 'value');
+            const columnsTotalArray = [];
+            dimensionalArray.map(item => columnsTotalArray.push(...item));
+            dimensionalArray = columnsTotalArray;
+        } break;
+        default: console.log('Wrong type'); break;
+    }
+
+    return tableValuesArray;
+}
