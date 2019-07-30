@@ -1,8 +1,9 @@
 import jsonData from '../src/data/data.json';
 
-
 const firstExample = {
   title: 'Columns and Values',
+
+  rowsTitle: [null, null],
 
   uniqueColumnsValues: [
     { label: 'CA' },
@@ -17,6 +18,12 @@ const firstExample = {
     { label: 'UT' },
     { label: 'WA' },
     { label: 'WI' }
+  ],
+
+  verticalTotalTitle: [null, ['Grand Total']],
+
+  horizontalTotalTitle: [
+    'Sum of revenue'
   ],
 
   columnsTotalValues: [
@@ -39,6 +46,14 @@ const firstExample = {
 
 const secondExample = {
   title: 'Rows and Values',
+
+  rowsTitle: [
+    'Row Labels'
+  ],
+
+  verticalTotalTitle: [
+    ['Sum of revenue']
+  ],
 
   uniqueRowsValues: [
     { label: 'Boise' },
@@ -72,11 +87,23 @@ const secondExample = {
     ]
   ],
 
+  horizontalTotalTitle: [
+    'Grand Total'
+  ],
+
   grandTotal: [81883]
 };
 
 const thirdExample = {
   title: 'Rows and a few Values',
+
+  rowsTitle: [
+    null
+  ],
+
+  verticalTotalTitle: [
+    ['Sum of revenue', 'Sum of unit_price', 'Sum of shipping_fee']
+  ],
 
   uniqueRowsValues: [
     { label: 'Andrew Cencini' },
@@ -122,11 +149,20 @@ const thirdExample = {
     ],
   ],
 
+  horizontalTotalTitle: [
+    'Grand Total'
+  ],
+
   grandTotal: [81883, 1427.91, 8188.3]
 };
 
 const forthExample = {
   title: 'All fields with 1 value',
+
+  rowsTitle: [
+    'Sum of revenue',
+    'Row Labels'
+  ],
 
   uniqueColumnsValues: [
     { label: 'Company A' },
@@ -135,6 +171,11 @@ const forthExample = {
     { label: 'Company J' },
     { label: 'Company Y' },
     { label: 'Company Z' }
+  ],
+
+  verticalTotalTitle: [
+    null,
+    ['Grand Total']
   ],
 
   uniqueRowsValues: [
@@ -154,11 +195,17 @@ const forthExample = {
   ],
 
   rowsTotalValues: [
-    { value: 3212 },
-    { value: 490 },
-    { value: 460 },
-    { value: 1821.6 },
-    { value: 1619.2 }
+    [
+      { value: 3212 },
+      { value: 490 },
+      { value: 460 },
+      { value: 1821.6 },
+      { value: 1619.2 }
+    ]
+  ],
+
+  horizontalTotalTitle: [
+    'Grand Total'
   ],
 
   columnsTotalValues: [
@@ -178,6 +225,13 @@ const forthExample = {
 const fifthExample = {
   title: 'All fields with 2 values',
 
+  rowsTitle: [
+    'Sum of revenue',
+    null,
+    null,
+    'Row Labels'
+  ],
+
   uniqueColumnsValues: [
     {
       label: '12/10/14',
@@ -196,22 +250,26 @@ const fifthExample = {
       ],
       total: ['12/10/14 Total'],
     },
-    {
-      label: '12/25/14',
-      showSubColumns: true,
-      subColumns: [
-        {
-          label: 'Baked Goods & Mixes',
-          subColumns: [
-            {
-              label: 'Scones'
-            }
-          ],
-          total: ['Baked Goods & Mixes Total'],
-        }
-      ],
-      total: ['12/25/14 Total']
-    }
+    // {
+    //   label: '12/25/14',
+    //   showSubColumns: true,
+    //   subColumns: [
+    //     {
+    //       label: 'Baked Goods & Mixes',
+    //       subColumns: [
+    //         {
+    //           label: 'Scones'
+    //         }
+    //       ],
+    //       total: ['Baked Goods & Mixes Total'],
+    //     }
+    //   ],
+    //   total: ['12/25/14 Total']
+    // }
+  ],
+
+  verticalTotalTitle: [
+    null, ['Grand Total'], null, null
   ],
 
   uniqueRowsValues: [
@@ -397,6 +455,10 @@ const fifthExample = {
     }
   ],
 
+  horizontalTotalTitle: [
+    'Grand Total'
+  ],
+
   columnsTotalValues: [
     {
       value: 810,
@@ -437,56 +499,56 @@ export const examples = [
   fifthExample
 ];
 
-export const configurator = {
-  filters: [],
-  columns: ['state'],
-  rows: [],
-  values: ['revenue']
-};
+// export const configurator = {
+//   filters: [],
+//   columns: ['state'],
+//   rows: [],
+//   values: ['revenue']
+// };
 
 export const data = jsonData;
 
-const predefinedObject = {
-  number: { textAlign: 'right', icon: null, iconSide: null, type: 'number' },
-  currency: { textAlign: 'right', icon: '$', iconSide: 'left', type: 'number' },
-  date: { textAlign: 'left', icon: null, iconSide: null, type: 'string' },
-  time: { textAlign: 'left', icon: null, iconSide: null, type: 'string' },
-  percentage: { textAlign: 'left', icon: '%', iconSide: 'right', type: 'number' },
-  text: { textAlign: 'left', icon: null, iconSide: null, type: 'string' },
+// const predefinedObject = {
+//   number: { textAlign: 'right', icon: null, iconSide: null, type: 'number' },
+//   currency: { textAlign: 'right', icon: '$', iconSide: 'left', type: 'number' },
+//   date: { textAlign: 'left', icon: null, iconSide: null, type: 'string' },
+//   time: { textAlign: 'left', icon: null, iconSide: null, type: 'string' },
+//   percentage: { textAlign: 'left', icon: '%', iconSide: 'right', type: 'number' },
+//   text: { textAlign: 'left', icon: null, iconSide: null, type: 'string' },
 
-};
+// };
 
 
-const jsonDataObject = {
-  order_id: predefinedObject.number,
-  order_date: predefinedObject.date,
-  customer_id: predefinedObject.number,
-  customer_name: predefinedObject.text,
-  address: predefinedObject.text,
-  city: predefinedObject.text,
-  state: predefinedObject.text,
-  zip_code: predefinedObject.number,
-  country: predefinedObject.number,
-  salesperson: predefinedObject.text,
-  region: predefinedObject.text,
-  shipped_date: predefinedObject.date,
-  shipper_name: predefinedObject.text,
-  ship_name: predefinedObject.text,
-  ship_address: predefinedObject.text,
-  ship_city: predefinedObject.text,
-  ship_state: predefinedObject.text,
-  ship_zipCode: predefinedObject.number,
-  ship_country: predefinedObject.text,
-  payment_type: predefinedObject.text,
-  product_name: predefinedObject.text,
-  category: predefinedObject.text,
-  unit_price: predefinedObject.currency,
-  quantity: predefinedObject.number,
-  revenue: predefinedObject.currency,
-  shipping_fee: predefinedObject.currency
-};
+// const jsonDataObject = {
+//   order_id: predefinedObject.number,
+//   order_date: predefinedObject.date,
+//   customer_id: predefinedObject.number,
+//   customer_name: predefinedObject.text,
+//   address: predefinedObject.text,
+//   city: predefinedObject.text,
+//   state: predefinedObject.text,
+//   zip_code: predefinedObject.number,
+//   country: predefinedObject.number,
+//   salesperson: predefinedObject.text,
+//   region: predefinedObject.text,
+//   shipped_date: predefinedObject.date,
+//   shipper_name: predefinedObject.text,
+//   ship_name: predefinedObject.text,
+//   ship_address: predefinedObject.text,
+//   ship_city: predefinedObject.text,
+//   ship_state: predefinedObject.text,
+//   ship_zipCode: predefinedObject.number,
+//   ship_country: predefinedObject.text,
+//   payment_type: predefinedObject.text,
+//   product_name: predefinedObject.text,
+//   category: predefinedObject.text,
+//   unit_price: predefinedObject.currency,
+//   quantity: predefinedObject.number,
+//   revenue: predefinedObject.currency,
+//   shipping_fee: predefinedObject.currency
+// };
 
-export const columns = [
-  jsonDataObject.state,
-  jsonData.revenue
-];
+// export const columns = [
+//   jsonDataObject.state,
+//   jsonData.revenue
+// ];

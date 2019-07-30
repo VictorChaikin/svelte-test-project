@@ -1,26 +1,36 @@
 <script>
-  import Header from "./Header.svelte";
-  import Body from "./Body.svelte";
-  import Footer from "./Footer.svelte";
+  import Header from "./header/Header.svelte";
+  import Body from "./body/Body.svelte";
+  import Footer from "./footer/Footer.svelte";
 
   export let data;
-  export let configurator;
-  console.log(data);
-  console.log("_______________");
+  // console.log(data);
 </script>
+
+<style>
+  table {
+    border-collapse: collapse;
+    /* border: 1px solid black; */
+  }
+</style>
 
 <table>
 
-  <Header uniqueColumns={data.uniqueColumnsValues} {configurator} />
+  <Header
+    rowsTitle={data.rowsTitle}
+    uniqueColumns={data.uniqueColumnsValues}
+    verticalTotalTitle={data.verticalTotalTitle} />
 
-  <Body
-    uniqueRows={data.uniqueRowsValues}
-    tableValues={data.tableValues}
-    rowsTotal={data.rowsTotalValues} />
+  <!-- {#if data.uniqueRowsValues}
+    <Body
+      uniqueRows={data.uniqueRowsValues}
+      tableValues={data.tableValues}
+      rowsTotal={data.rowsTotalValues} />
+  {/if}
 
   <Footer
+    horizontalTotalTitle={data.horizontalTotalTitle}
     columnsTotal={data.columnsTotalValues}
-    grandTotal={data.grandTotal}
-    {configurator} />
-    
+    grandTotal={data.grandTotal} /> -->
+
 </table>
