@@ -11,7 +11,7 @@
 </style>
 
 {#if tablePart === 'body'}
-  <td>{data}</td>
+  <td>{data || ''}</td>
 {:else}
-  <th>{data}</th>
+  <th>{data || ''}</th>
 {/if}

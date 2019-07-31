@@ -5,7 +5,7 @@ const firstExample = {
 
   rowsTitle: [[null], [null]],
 
-  uniqueColumnsValues: [
+  uniqueColumns: [
     { label: 'CA' },
     { label: 'CO' },
     { label: 'FL' },
@@ -26,7 +26,7 @@ const firstExample = {
     ['Sum of revenue']
   ],
 
-  columnsTotalValues: [
+  columnsTotal: [
    [2544.73, 2464.65, 7780.57, 4543, 8278.07, 5524.75, 15329.3, 6929.45, 10954.7, 2612, 6594.03, 8327.75]
 ],
 
@@ -221,7 +221,7 @@ const fifthExample = {
     'Row Labels'
   ],
 
-  uniqueColumnsValues: [
+  uniqueColumns: [
     {
       label: '12/10/14',
       showSubColumns: true,
@@ -261,7 +261,7 @@ const fifthExample = {
     null, ['Grand Total'], null, null
   ],
 
-  uniqueRowsValues: [
+  uniqueRows: [
     {
       label: 'Laura Giussani',
       showSubRows: true,
@@ -421,7 +421,7 @@ const fifthExample = {
     ]
   ],
 
-  rowsTotalValues: [
+  rowsTotal: [
     {
       value: 1800,
       showSubRows: true,
@@ -448,7 +448,7 @@ const fifthExample = {
     'Grand Total'
   ],
 
-  columnsTotalValues: [
+  columnsTotal: [
     {
       value: 810,
       showSubColumns: true,
