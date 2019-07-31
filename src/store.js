@@ -3,7 +3,7 @@ import jsonData from '../src/data/data.json';
 const firstExample = {
   title: 'Columns and Values',
 
-  rowsTitle: [null, null],
+  rowsTitle: [[null], [null]],
 
   uniqueColumnsValues: [
     { label: 'CA' },
@@ -20,28 +20,17 @@ const firstExample = {
     { label: 'WI' }
   ],
 
-  verticalTotalTitle: [null, ['Grand Total']],
+  verticalTotalTitle: [[null], ['Grand Total']],
 
   horizontalTotalTitle: [
-    'Sum of revenue'
+    ['Sum of revenue']
   ],
 
   columnsTotalValues: [
-    { value: 2544.73 },
-    { value: 2464.65 },
-    { value: 7780.57 },
-    { value: 4543 },
-    { value: 8278.07 },
-    { value: 5524.75 },
-    { value: 15329.3 },
-    { value: 6929.45 },
-    { value: 10954.7 },
-    { value: 2612 },
-    { value: 6594.03 },
-    { value: 8327.75 }
-  ],
+   [2544.73, 2464.65, 7780.57, 4543, 8278.07, 5524.75, 15329.3, 6929.45, 10954.7, 2612, 6594.03, 8327.75]
+],
 
-  grandTotal: [81883]
+  grandTotal: [[81883]]
 };
 
 const secondExample = {
@@ -493,10 +482,10 @@ const fifthExample = {
 
 export const examples = [
   firstExample,
-  secondExample,
-  thirdExample,
-  forthExample,
-  fifthExample
+  // secondExample,
+  // thirdExample,
+  // forthExample,
+  // fifthExample
 ];
 
 // export const configurator = {

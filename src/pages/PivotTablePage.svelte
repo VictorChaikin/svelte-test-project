@@ -1,6 +1,6 @@
 <script>
   import { Link } from "svelte-routing";
-  import PivotTable from "../components/pivot-table/Table.svelte";
+  import PivotTable from "../components/PivotTable.svelte";
   import { examples } from "../store";
 </script>
 
@@ -17,15 +17,15 @@
     height: calc(100% - 119px); */
   }
 
-  .tables-row {
+  /* .tables-row {
     display: flex;
     justify-content: space-around;
-  }
+  } */
 
-  th,
+  /* th,
   td {
     padding: 5px;
-  }
+  } */
 </style>
 
 <div class="pivot-table-page">
@@ -105,7 +105,7 @@
       </tfoot>
     </table>
 
-    <div class="tables-row">
+    <!-- <div class="tables-row">
       <div>
         <div class="title">
           <h3>{examples[1].title} Component Example</h3>
@@ -461,6 +461,6 @@
           <th>810</th>
         </tr>
       </tfoot>
-    </table>
+    </table> -->
   </div>
 </div>
