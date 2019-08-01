@@ -83,7 +83,10 @@ function getUniqueRowsVisualisation(uniqueRows, first) {
     }
 }
 
-function getUniqueTableValuesVisualisation() {
+function getTableValuesVisualisation(tableValues, uniqueColumns) {
+    console.log(tableValues);
+    console.log(uniqueColumns);
+    return [];
 }
 
 
@@ -126,7 +129,7 @@ function compressMultipleArraysToOne(arrays) {
         // console.log(arrays[i]);
     }
 
-    // console.log(array);
+    console.log(array);
     return [array];
 }
 
@@ -179,11 +182,15 @@ export function createBody(uniqueRows, uniqueColumns, tableValues, rowsTotal) {
         rowsTotalVisualisation = compressMultipleArraysToOne(rowsTotalVisualisation);
         // console.log(rowsTotalVisualisation[0]);
     }
-    console.log(rowsTotalVisualisation);
+    // console.log(rowsTotalVisualisation);
 
 
     if (tableValues) {
-        tableValuesVisualisation = getUniqueTableValuesVisualisation();
+        // console.log(tableValues);
+        // tableValuesVisualisation = compressMultipleArraysToOne(tableValues);
+        // getTableValuesVisualisation(tableValues, uniqueColumns);
+        tableValuesVisualisation = tableValues;
+        // console.log(tableValuesVisualisation);
     }
 
 

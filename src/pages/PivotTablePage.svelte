@@ -17,10 +17,10 @@
     height: calc(100% - 119px); */
   }
 
-  /* .tables-row {
+  .tables-row {
     display: flex;
     justify-content: space-around;
-  } */
+  }
 
 </style>
 
@@ -148,31 +148,31 @@
             </tr>
             <tr>
               <td>Memphis</td>
-              <td>2544.73</td>
+              <td>10954.7</td>
             </tr>
             <tr>
               <td>Miami</td>
-              <td>2544.73</td>
+              <td>7780.57</td>
             </tr>
             <tr>
               <td>Milwaukee</td>
-              <td>2544.73</td>
+              <td>8327.75</td>
             </tr>
             <tr>
               <td>New York</td>
-              <td>2544.73</td>
+              <td>15329.3</td>
             </tr>
             <tr>
               <td>Portland</td>
-              <td>2544.73</td>
+              <td>6929.45</td>
             </tr>
             <tr>
               <td>Salt Lake City</td>
-              <td>2544.73</td>
+              <td>2612</td>
             </tr>
             <tr>
               <td>Seattle</td>
-              <td>2544.73</td>
+              <td>6594.03</td>
             </tr>
 
           </tbody>
@@ -277,7 +277,7 @@
         </tr>
       </tfoot>
     </table>
-<!-- 
+
     <div class="title">
       <h3>{examples[3].title} Component Example</h3>
     </div>
@@ -375,7 +375,7 @@
           <th>7602.8</th>
         </tr>
       </tfoot>
-    </table> -->
+    </table> 
 
     <!-- <div class="title">
       <h3>{examples[4].title} Component Example</h3>
