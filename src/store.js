@@ -27,8 +27,8 @@ const firstExample = {
   ],
 
   columnsTotal: [
-   [2544.73, 2464.65, 7780.57, 4543, 8278.07, 5524.75, 15329.3, 6929.45, 10954.7, 2612, 6594.03, 8327.75]
-],
+    [2544.73], [2464.65], [7780.57], [4543], [8278.07], [5524.75], [15329.3], [6929.45], [10954.7], [2612], [6594.03], [8327.75]
+  ],
 
   grandTotal: [[81883]]
 };
@@ -37,14 +37,14 @@ const secondExample = {
   title: 'Rows and Values',
 
   rowsTitle: [
-    'Row Labels'
+    ['Row Labels']
   ],
 
   verticalTotalTitle: [
     ['Sum of revenue']
   ],
 
-  uniqueRowsValues: [
+  uniqueRows: [
     { label: 'Boise' },
     { label: 'Chicago' },
     { label: 'Denver' },
@@ -59,42 +59,42 @@ const secondExample = {
     { label: 'Seattle' }
   ],
 
-  rowsTotalValues: [
+  rowsTotal: [
     [
-      { value: 4543 },
-      { value: 8278.07 },
-      { value: 2464.65 },
-      { value: 5524.75 },
-      { value: 2544.73 },
-      { value: 10954.7 },
-      { value: 7780.57 },
-      { value: 8327.75 },
-      { value: 15329.3 },
-      { value: 6929.45 },
-      { value: 2612 },
-      { value: 6594.03 }
+      [4543],
+      [8278.07],
+      [2464.65],
+      [5524.75],
+      [2544.73],
+      [10954.7],
+      [7780.57],
+      [8327.75],
+      [15329.3],
+      [6929.45],
+      [2612],
+      [6594.03]
     ]
   ],
 
   horizontalTotalTitle: [
-    'Grand Total'
+    ['Grand Total']
   ],
 
-  grandTotal: [81883]
+  grandTotal: [[81883]]
 };
 
 const thirdExample = {
   title: 'Rows and a few Values',
 
   rowsTitle: [
-    null
+    [null]
   ],
 
   verticalTotalTitle: [
     ['Sum of revenue', 'Sum of unit_price', 'Sum of shipping_fee']
   ],
 
-  uniqueRowsValues: [
+  uniqueRows: [
     { label: 'Andrew Cencini' },
     { label: 'Anne Larsen' },
     { label: 'Jan Kotas' },
@@ -105,55 +105,55 @@ const thirdExample = {
     { label: 'Robert Zare' }
   ],
 
-  rowsTotalValues: [
+  rowsTotal: [
     [
-      { value: 15329.3 },
-      { value: 18735.27 },
-      { value: 2464.65 },
-      { value: 8278.07 },
-      { value: 8069.48 },
-      { value: 8327.75 },
-      { value: 18066.48 },
-      { value: 2612 }
+      [15329.3],
+      [18735.27],
+      [2464.65],
+      [8278.07],
+      [8069.48],
+      [8327.75],
+      [18066.48],
+      [2612]
     ],
     [
-      { value: 230.9 },
-      { value: 321.94 },
-      { value: 74.95 },
-      { value: 104.69 },
-      { value: 161.14 },
-      { value: 174.25 },
-      { value: 296.09 },
-      { value: 63.95 }
+      [230.9],
+      [321.94],
+      [74.95],
+      [104.69],
+      [161.14],
+      [174.25],
+      [296.09],
+      [63.95]
     ],
     [
-      { value: 1532.93 },
-      { value: 1873.527 },
-      { value: 246.465 },
-      { value: 827.807 },
-      { value: 806.948 },
-      { value: 832.775 },
-      { value: 1806.648 },
-      { value: 261.2 }
+      [1532.93],
+      [1873.527],
+      [246.465],
+      [827.807],
+      [806.948],
+      [832.775],
+      [1806.648],
+      [261.2]
     ],
   ],
 
   horizontalTotalTitle: [
-    'Grand Total'
+    ['Grand Total']
   ],
 
-  grandTotal: [81883, 1427.91, 8188.3]
+  grandTotal: [[81883, 1427.91, 8188.3]]
 };
 
 const forthExample = {
   title: 'All fields with 1 value',
 
   rowsTitle: [
-    'Sum of revenue',
-    'Row Labels'
+    ['Sum of revenue'],
+    ['Row Labels']
   ],
 
-  uniqueColumnsValues: [
+  uniqueColumns: [
     { label: 'Company A' },
     { label: 'Company BB' },
     { label: 'Company C' },
@@ -163,11 +163,11 @@ const forthExample = {
   ],
 
   verticalTotalTitle: [
-    null,
+    [null],
     ['Grand Total']
   ],
 
-  uniqueRowsValues: [
+  uniqueRows: [
     { label: 'Chicago' },
     { label: 'Los Angelas' },
     { label: 'Memphis' },
@@ -176,38 +176,38 @@ const forthExample = {
   ],
 
   tableValues: [
-    [null, null, null, { label: 1584 }, { label: 1628 }, null],
-    [null, null, { label: 490 }, null, null, null],
-    [null, { label: 460 }, null, null, null, null],
-    [null, null, null, null, null, { label: 1821.6 }],
-    [{ label: 1619.2 }, null, null, null, null, null]
+    [[null], [null], [null], [1584], [1628], [null]],
+    [[null], [null], [490], [null], [null], [null]],
+    [[null], [460], [null], [null], [null], [null]],
+    [[null], [null], [null], [null], [null], [1821.6]],
+    [[1619.2], [null], [null], [null], [null], [null]]
   ],
 
-  rowsTotalValues: [
+  rowsTotal: [
     [
-      { value: 3212 },
-      { value: 490 },
-      { value: 460 },
-      { value: 1821.6 },
-      { value: 1619.2 }
+      [3212],
+      [490],
+      [460],
+      [1821.6],
+      [1619.2]
     ]
   ],
 
   horizontalTotalTitle: [
-    'Grand Total'
+    ['Grand Total']
   ],
 
-  columnsTotalValues: [
-    { value: 1619.2 },
-    { value: 460 },
-    { value: 490 },
-    { value: 1584 },
-    { value: 1628 },
-    { value: 1821.6 }
+  columnsTotal: [
+    [1619.2],
+    [460],
+    [490],
+    [1584],
+    [1628],
+    [1821.6]
   ],
 
   grandTotal: [
-    7602.8
+    [7602.8]
   ]
 };
 
@@ -215,10 +215,10 @@ const fifthExample = {
   title: 'All fields with 2 values',
 
   rowsTitle: [
-    'Sum of revenue',
-    null,
-    null,
-    'Row Labels'
+    ['Sum of revenue'],
+    [null],
+    [null],
+    ['Row Labels']
   ],
 
   uniqueColumns: [
@@ -234,31 +234,27 @@ const fifthExample = {
               label: 'Almonds'
             }
           ],
-          total: ['Drie Fruit & Nuts Total']
         }
       ],
-      total: ['12/10/14 Total'],
     },
-    // {
-    //   label: '12/25/14',
-    //   showSubColumns: true,
-    //   subColumns: [
-    //     {
-    //       label: 'Baked Goods & Mixes',
-    //       subColumns: [
-    //         {
-    //           label: 'Scones'
-    //         }
-    //       ],
-    //       total: ['Baked Goods & Mixes Total'],
-    //     }
-    //   ],
-    //   total: ['12/25/14 Total']
-    // }
+    {
+      label: '12/25/14',
+      showSubColumns: true,
+      subColumns: [
+        {
+          label: 'Baked Goods & Mixes',
+          subColumns: [
+            {
+              label: 'Scones'
+            }
+          ],
+        }
+      ],
+    }
   ],
 
   verticalTotalTitle: [
-    null, ['Grand Total'], null, null
+    [null], ['Grand Total'], [null], [null]
   ],
 
   uniqueRows: [
@@ -290,200 +286,59 @@ const fifthExample = {
 
   tableValues: [
     [
-      {
-        value: 810,
-        showSubColumns: true,
-        subColumns: [{
-          value: 810,
-          showSubColumns: true,
-          subColumns: [{
-            value: 810
-          }]
-        }],
-        showSubRows: true,
-        subRows: [
-          {
-            value: 810,
-            showSubColumns: true,
-            subColumns: [{
-              value: 810,
-              showSubColumns: true,
-              subColumns: [{
-                value: 810
-              }]
-            }],
-            showSubRows: true,
-            subRows: [
-              {
-                value: 810,
-                showSubColumns: true,
-                subColumns: [{
-                  value: 810,
-                  showSubColumns: true,
-                  subColumns: [{
-                    value: 810
-                  }]
-                }]
-              }
-            ]
-          },
-          {
-            value: null,
-            showSubColumns: true,
-            subColumns: [{
-              value: null,
-              showSubColumns: true,
-              subColumns: [{
-                value: null
-              }]
-            }],
-            showSubRows: true,
-            subRows: [
-              {
-                value: null,
-                showSubColumns: true,
-                subColumns: [{
-                  value: null,
-                  showSubColumns: true,
-                  subColumns: [{
-                    value: null
-                  }]
-                }]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        value: 990,
-        showSubColumns: true,
-        subColumns: [{
-          value: 990,
-          showSubColumns: true,
-          subColumns: [{
-            value: 990
-          }]
-        }],
-        showSubRows: true,
-        subRows: [
-          {
-            value: null,
-            showSubColumns: true,
-            subColumns: [{
-              value: null,
-              showSubColumns: true,
-              subColumns: [{
-                value: null
-              }]
-            }],
-            showSubRows: true,
-            subRows: [
-              {
-                value: null,
-                showSubColumns: true,
-                subColumns: [{
-                  value: null,
-                  showSubColumns: true,
-                  subColumns: [{
-                    value: null
-                  }]
-                }]
-              }
-            ]
-          },
-          {
-            value: 990,
-            showSubColumns: true,
-            subColumns: [{
-              value: 990,
-              showSubColumns: true,
-              subColumns: [{
-                value: 990
-              }]
-            }],
-            showSubRows: true,
-            subRows: [
-              {
-                value: 990,
-                showSubColumns: true,
-                subColumns: [{
-                  value: 990,
-                  showSubColumns: true,
-                  subColumns: [{
-                    value: 990
-                  }]
-                }]
-              }
-            ]
-          }
-        ]
-      },
+      [
+        [810, 810, 810],
+        [810, 810, 810],
+        [810, 810, 810],
+        [null, null, null],
+        [null, null, null]
+      ],
+      [
+        [990, 990, 990],
+        [null, null, null],
+        [null, null, null],
+        [990, 990, 990],
+        [990, 990, 990]
+      ]
     ]
   ],
 
   rowsTotal: [
-    {
-      value: 1800,
-      showSubRows: true,
-      subRows: [
-        {
-          value: 810,
-          showSubRows: true,
-          subRows: [{
-            value: 810
-          }]
-        },
-        {
-          value: 990,
-          showSubRows: true,
-          subRows: [{
-            value: 990
-          }]
-        }
+    [
+      [
+        1800,
+        810,
+        810,
+        990,
+        990
       ]
-    }
+    ]
   ],
 
   horizontalTotalTitle: [
-    'Grand Total'
+    ['Grand Total']
   ],
 
   columnsTotal: [
-    {
-      value: 810,
-      showSubColumns: true,
-      subColumns: [
-        {
-          value: 810,
-          showSubColumns: true,
-          subColumns: [{
-            value: 810
-          }]
-        }
-      ]
-    },
-    {
-      value: 990,
-      showSubColumns: true,
-      subColumns: [
-        {
-          value: 990,
-          showSubColumns: true,
-          subColumns: [{
-            value: 990
-          }]
-        }
-      ]
-    }
+    [
+      810,
+      810,
+      810
+    ],
+    [
+      990,
+      990,
+      990
+    ]
   ],
 
-  grandTotal: [1800]
+  grandTotal: [[1800]]
 };
 
 export const examples = [
   firstExample,
-  // secondExample,
-  // thirdExample,
+  secondExample,
+  thirdExample,
   // forthExample,
   // fifthExample
 ];

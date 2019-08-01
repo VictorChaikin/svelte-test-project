@@ -22,10 +22,6 @@
     justify-content: space-around;
   } */
 
-  /* th,
-  td {
-    padding: 5px;
-  } */
 </style>
 
 <div class="pivot-table-page">
@@ -105,7 +101,7 @@
       </tfoot>
     </table>
 
-    <!-- <div class="tables-row">
+    <div class="tables-row">
       <div>
         <div class="title">
           <h3>{examples[1].title} Component Example</h3>
@@ -281,7 +277,7 @@
         </tr>
       </tfoot>
     </table>
-
+<!-- 
     <div class="title">
       <h3>{examples[3].title} Component Example</h3>
     </div>
@@ -379,9 +375,9 @@
           <th>7602.8</th>
         </tr>
       </tfoot>
-    </table>
+    </table> -->
 
-    <div class="title">
+    <!-- <div class="title">
       <h3>{examples[4].title} Component Example</h3>
     </div>
 

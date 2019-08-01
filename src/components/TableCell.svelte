@@ -5,9 +5,6 @@
 </script>
 
 <style>
-  td {
-    padding-left: 10px;
-  }
 </style>
 
 {#if tablePart === 'body'}

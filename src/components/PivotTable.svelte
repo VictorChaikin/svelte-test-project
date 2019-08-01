@@ -13,19 +13,23 @@
     data.verticalTotalTitle
   );
 
-  const body = createBody(
-    data.uniqueRows,
-    data.uniqueColumns,
-    data.tableValues,
-    data.columnsTotal
-  );
+  let body = [];
 
-  const footer = createFooter(
-    data.horizontalTotalTitle,
-    data.uniqueColumns,
-    data.columnsTotal,
-    data.grandTotal
-  );
+  // if (data.uniqueRows) {
+  //   body = createBody(
+  //     data.uniqueRows,
+  //     data.uniqueColumns,
+  //     data.tableValues,
+  //     data.rowsTotal
+  //   );
+  // }
+
+  // const footer = createFooter(
+  //   data.horizontalTotalTitle,
+  //   data.uniqueColumns,
+  //   data.columnsTotal,
+  //   data.grandTotal
+  // );
 
   // console.log(header);
   // console.log(body);
@@ -42,7 +46,7 @@
     </tr>
   {/each}
 
-  {#if data.uniqueRows}
+  <!-- {#if data.uniqueRows}
     {#each body as bodyRow}
       <tr>
         {#each bodyRow as bodyItem}
@@ -50,14 +54,14 @@
         {/each}
       </tr>
     {/each}
-  {/if}
+  {/if} -->
 
-  {#each footer as footerRow}
+  <!-- {#each footer as footerRow}
     <tr>
       {#each footerRow as footerItem}
         <Cell data={footerItem} tablePart="footer" />
       {/each}
     </tr>
-  {/each}
+  {/each} -->
 
 </table>
