@@ -2,6 +2,7 @@
   import { Link } from "svelte-routing";
   import PivotTable from "../components/PivotTable.svelte";
   import { examples } from "../store";
+
 </script>
 
 <style>
@@ -21,7 +22,6 @@
     display: flex;
     justify-content: space-around;
   }
-
 </style>
 
 <div class="pivot-table-page">
@@ -377,7 +377,7 @@
       </tfoot>
     </table> 
 
-    <!-- <div class="title">
+    <div class="title">
       <h3>{examples[4].title} Component Example</h3>
     </div>
 
@@ -397,6 +397,9 @@
           <th />
           <th />
           <th />
+          <th />
+          <th />
+          <th />
         </tr>
 
         <tr>
@@ -404,6 +407,9 @@
           <th>12/10/14</th>
           <th />
           <th>12/10/14 Total</th>
+          <th>12/25/14</th>
+          <th />
+          <th>12/25/14 Total</th>
           <th>Grand Total</th>
         </tr>
 
@@ -412,12 +418,18 @@
           <th>Dried Fruit & Nuts</th>
           <th>Dried Fruit & Nuts Total</th>
           <th />
+          <th>Baked Goods & Mixes</th>
+          <th>Baked Goods & Mixes Total</th>
+          <th />
           <th />
         </tr>
 
         <tr>
           <th>Row Labels</th>
           <th>Almonds</th>
+          <th />
+          <th />
+          <th>Scones</th>
           <th />
           <th />
           <th />
@@ -430,13 +442,19 @@
           <td>810</td>
           <td>810</td>
           <td>810</td>
-          <td>810</td>
+          <td>990</td>
+          <td>990</td>
+          <td>990</td>
+          <td>1800</td>
         </tr>
         <tr>
           <td>123 10th Street</td>
           <td>810</td>
           <td>810</td>
           <td>810</td>
+          <td />
+          <td />
+          <td />
           <td>810</td>
         </tr>
         <tr>
@@ -444,7 +462,30 @@
           <td>810</td>
           <td>810</td>
           <td>810</td>
+          <td />
+          <td />
+          <td />
           <td>810</td>
+        </tr>
+        <tr>
+          <td>789 25th Street</td>
+          <td />
+          <td />
+          <td />
+          <td>990</td>
+          <td>990</td>
+          <td>990</td>
+          <td>990</td>
+        </tr>
+        <tr>
+          <td>Chicago</td>
+         <td />
+          <td />
+          <td />
+          <td>990</td>
+          <td>990</td>
+          <td>990</td>
+          <td>990</td>
         </tr>
       </tbody>
 
@@ -454,9 +495,13 @@
           <th>810</th>
           <th>810</th>
           <th>810</th>
+          <th>990</th>
+          <th>990</th>
+          <th>990</th>
           <th>810</th>
         </tr>
       </tfoot>
-    </table> -->
+    </table>
+
   </div>
 </div>

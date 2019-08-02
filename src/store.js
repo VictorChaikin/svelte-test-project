@@ -61,18 +61,18 @@ const secondExample = {
 
   rowsTotal: [
     [
-      [4543],
-      [8278.07],
-      [2464.65],
-      [5524.75],
-      [2544.73],
-      [10954.7],
-      [7780.57],
-      [8327.75],
-      [15329.3],
-      [6929.45],
-      [2612],
-      [6594.03]
+      { value: 4543 },
+      { value: 8278.07 },
+      { value: 2464.65 },
+      { value: 5524.75 },
+      { value: 2544.73 },
+      { value: 10954.7 },
+      { value: 7780.57 },
+      { value: 8327.75 },
+      { value: 15329.3 },
+      { value: 6929.45 },
+      { value: 2612 },
+      { value: 6594.03 }
     ]
   ],
 
@@ -107,34 +107,34 @@ const thirdExample = {
 
   rowsTotal: [
     [
-      [15329.3],
-      [18735.27],
-      [2464.65],
-      [8278.07],
-      [8069.48],
-      [8327.75],
-      [18066.48],
-      [2612]
+      { value: 15329.3 },
+      { value: 18735.27 },
+      { value: 2464.65 },
+      { value: 8278.07 },
+      { value: 8069.48 },
+      { value: 8327.75 },
+      { value: 18066.48 },
+      { value: 2612 }
     ],
     [
-      [230.9],
-      [321.94],
-      [74.95],
-      [104.69],
-      [161.14],
-      [174.25],
-      [296.09],
-      [63.95]
+      { value: 230.9 },
+      { value: 321.94 },
+      { value: 74.95 },
+      { value: 104.69 },
+      { value: 161.14 },
+      { value: 174.25 },
+      { value: 296.09 },
+      { value: 63.95 }
     ],
     [
-      [1532.93],
-      [1873.527],
-      [246.465],
-      [827.807],
-      [806.948],
-      [832.775],
-      [1806.648],
-      [261.2]
+      { value: 1532.93 },
+      { value: 1873.527 },
+      { value: 246.465 },
+      { value: 827.807 },
+      { value: 806.948 },
+      { value: 832.775 },
+      { value: 1806.648 },
+      { value: 261.2 }
     ],
   ],
 
@@ -185,11 +185,11 @@ const forthExample = {
 
   rowsTotal: [
     [
-      [3212],
-      [490],
-      [460],
-      [1821.6],
-      [1619.2]
+      { value: 3212 },
+      { value: 490 },
+      { value: 460 },
+      { value: 1821.6 },
+      { value: 1619.2 }
     ]
   ],
 
@@ -232,9 +232,9 @@ const fifthExample = {
           subColumns: [
             {
               label: 'Almonds'
-            }
+            },
           ],
-        }
+        },
       ],
     },
     {
@@ -243,12 +243,13 @@ const fifthExample = {
       subColumns: [
         {
           label: 'Baked Goods & Mixes',
+          showSubColumns: true,
           subColumns: [
             {
               label: 'Scones'
             }
           ],
-        }
+        },
       ],
     }
   ],
@@ -260,7 +261,7 @@ const fifthExample = {
   uniqueRows: [
     {
       label: 'Laura Giussani',
-      showSubRows: true,
+      showSubRows: false,
       subRows: [
         {
           label: '123 10th Street',
@@ -281,7 +282,31 @@ const fifthExample = {
           ]
         }
       ]
-    }
+    },
+    {
+      label: 'Laura Giussani',
+      showSubRows: false,
+      subRows: [
+        {
+          label: '123 10th Street',
+          showSubRows: true,
+          subRows: [
+            {
+              label: 'Chicago'
+            }
+          ]
+        },
+        {
+          label: '789 25th Street',
+          showSubRows: true,
+          subRows: [
+            {
+              label: 'Chicago'
+            }
+          ]
+        }
+      ]
+    },
   ],
 
   tableValues: [
@@ -305,14 +330,58 @@ const fifthExample = {
 
   rowsTotal: [
     [
-      [
-        1800,
-        810,
-        810,
-        990,
-        990
-      ]
-    ]
+      {
+        value: 1800,
+        subRows: [
+          {
+            value: 810,
+            subRows: [
+              {
+                value: 810
+              }
+            ]
+          },
+          {
+            value: 990,
+            subRows: [
+              {
+                value: 990
+              }
+            ]
+          }
+        ]
+      },
+      {
+        value: 1800,
+        subRows: [
+          {
+            value: 810,
+            subRows: [
+              {
+                value: 810
+              }
+            ]
+          },
+          {
+            value: 990,
+            subRows: [
+              {
+                value: 990
+              }
+            ]
+          }
+        ]
+      }
+      // [1800, 810, 810, 990, 990],
+    ],
+    // [
+    //   [1800, 810, 810, 990, 990],
+    //   [1800, 810, 810, 990, 990],
+    // ],
+    // [
+    //   [1800, 810, 810, 990, 990],
+    //   [1800, 810, 810, 990, 990],
+    // ]
   ],
 
   horizontalTotalTitle: [
@@ -340,7 +409,7 @@ export const examples = [
   secondExample,
   thirdExample,
   forthExample,
-  // fifthExample
+  fifthExample
 ];
 
 // export const configurator = {

@@ -5,6 +5,7 @@
 </script>
 
 <style>
+
 </style>
 
 {#if tablePart === 'body'}

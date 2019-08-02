@@ -50,36 +50,74 @@ function createTablePart(firstSubPart, secondSubPart, thirdSubPart) {
     return finalPartArray;
 }
 
-let temporaryArray = [];
-let dimensionalArray = [];
+let globalUniqueColumns = [];
+let globalUniqueRows = [];
+let globalRowsTotals = [];
+let globalRowsItem = [];
+let globalColumnsTotals = [];
+let tableHeaderLayer = 0;
+let columnsTotalItemCounter = 0;
+let rowsTotalCounter = 0;
 
 function getUniqueColumnsVisualisation(uniqueColumns, first) {
-
     for (let i = 0; i < uniqueColumns.length; i++) {
 
         if (uniqueColumns[i].subColumns) {
+            tableHeaderLayer++;
             getUniqueColumnsVisualisation(uniqueColumns[i].subColumns);
+            tableHeaderLayer--;
         }
 
-        temporaryArray.push(uniqueColumns[i].label);
+        // console.log(tableHeaderLayer);
 
-        if (first) {
-            dimensionalArray.push(temporaryArray);
-            temporaryArray = [];
+        if (globalUniqueColumns[tableHeaderLayer]) {
+
+            // console.log(uniqueColumns[i].label);
+            globalUniqueColumns[tableHeaderLayer].push(uniqueColumns[i].label);
+        } else {
+            // console.log(uniqueColumns[i].label);
+
+            globalUniqueColumns[tableHeaderLayer] = [uniqueColumns[i].label];
+        }
+
+        if (uniqueColumns[i].subColumns) {
+            // console.log('Has subcolumns');
+            // console.log(tableHeaderVisualisationArray);
+            // console.log(tableHeaderLayer);
+            // console.log(uniqueColumns[i].label);
+            // console.log(tableHeaderVisualisationArray[tableHeaderLayer]);
+            // console.log(tableHeaderVisualisationArray[tableHeaderLayer + 1]);
+            const diff = globalUniqueColumns[tableHeaderLayer + 1].length - globalUniqueColumns[tableHeaderLayer].length;
+
+            for (let j = 0; j < diff; j++) {
+                globalUniqueColumns[tableHeaderLayer].push(null);
+            }
+
+            globalUniqueColumns[tableHeaderLayer].push(`${uniqueColumns[i].label} Total`);
+
+            for (let k = tableHeaderLayer + 1; k < globalUniqueColumns.length; k++) {
+                globalUniqueColumns[k].push(null);
+            }
         }
     }
-
-    return dimensionalArray;
 }
 
 function getUniqueRowsVisualisation(uniqueRows, first) {
-    // console.log(uniqueRows);
     for (let i = 0; i < uniqueRows.length; i++) {
-        if (uniqueRows[i].subRows) {
+        if (uniqueRows[i].showSubRows) {
+            globalRowsItem.push([uniqueRows[i].label]);
+
             getUniqueRowsVisualisation(uniqueRows[i].subRows);
         }
 
-        dimensionalArray.push([uniqueRows[i].label]);
+        if (!uniqueRows[i].showSubRows) {
+            globalRowsItem.push([uniqueRows[i].label]);
+        }
+
+        if (first) {
+            globalUniqueRows.push(...globalRowsItem);
+            globalRowsItem = [];
+        }
     }
 }
 
@@ -89,69 +127,72 @@ function getTableValuesVisualisation(tableValues, uniqueColumns) {
     return [];
 }
 
+function visualiseRowsTotalItem(totalRow, uniqueRow, first) {
+    for (let i = 0; i < uniqueRow.length; i++) {
+        if (globalRowsTotals[rowsTotalCounter]) {
+            globalRowsTotals[rowsTotalCounter].push(totalRow[i].value);
+        }
+        else {
+            globalRowsTotals.push([totalRow[i].value]);
+        }
+        
+        rowsTotalCounter++;
+        if (uniqueRow[i].showSubRows) {
 
-function getRowsTotalVisualisation(rowsTotal, first) {
+            visualiseRowsTotalItem(totalRow[i].subRows, uniqueRow[i].subRows);
+        }
+       
+    }
+}
+
+function getRowsTotalVisualisation(rowsTotal, uniqueRows, first) {
     for (let i = 0; i < rowsTotal.length; i++) {
-        if (rowsTotal[i].subRows) {
-            getUniqueRowsVisualisation(rowsTotal[i].subRows);
-        }
-
-        dimensionalArray.push(rowsTotal[i]);
-
-        if (first) {
-            // console.log('Rows Total Column');
-            // console.log(dimensionalArray);
-        }
+        visualiseRowsTotalItem(rowsTotal[i], uniqueRows, first);
+        rowsTotalCounter = 0;
     }
 }
 
 function getColumnsTotalVisualisation(columnsTotal, uniqueColumns, first) {
-    // console.log('YEEEP columns total visualisation');
+    // console.log(uniqueColumns);
+    // console.log(columnsTotal);
     for (let i = 0; i < uniqueColumns.length; i++) {
-        dimensionalArray.push(columnsTotal[i][0]);
-    }
-
-    // console.log(dimensionalArray);
-}
-
-function compressMultipleArraysToOne(arrays) {
-    const array = [];
-
-    // console.log(arrays);
-    for (let i = 0; i < arrays.length; i++) {
-        for (let j = 0; j < arrays[i].length; j++){
-            if (array[j]) {
-                array[j].push(...arrays[i][j]);
+        if (uniqueColumns[i].showSubColumns) {
+            if (first) {
+                getColumnsTotalVisualisation(columnsTotal[i], uniqueColumns[i].subColumns);
             } else {
-                array.push(arrays[i][j]);
+                getColumnsTotalVisualisation(columnsTotal, uniqueColumns[i].subColumns);
             }
-        }
-        // console.log(arrays[i]);
-    }
 
-    console.log(array);
-    return [array];
+            columnsTotalItemCounter++;
+        }
+
+        if (first) {
+            globalColumnsTotals.push(columnsTotal[i][columnsTotalItemCounter]);
+        } else {
+            globalColumnsTotals.push(columnsTotal[columnsTotalItemCounter]);
+        }
+
+        if (first) {
+            // console.log(globalColumnsTotals);
+            columnsTotalItemCounter = 0;
+        }
+    }
 }
 
 export function createHeader(defaultRows, uniqueColumns, verticalTotalTitle) {
     const columns = [];
 
     if (uniqueColumns) {
-        const uniqueColumnsVisualisation = getUniqueColumnsVisualisation(uniqueColumns, 'first');
-        const defaultColumns = new Array(uniqueColumnsVisualisation.length).fill(null);
+        getUniqueColumnsVisualisation(uniqueColumns, 'first');
+        const uniqueColumnsVisualisation = globalUniqueColumns;
+        globalUniqueColumns = [];
+
+        const defaultColumns = new Array(uniqueColumnsVisualisation[0].length).fill(null);
         defaultColumns[0] = 'Columns Labels';
 
         columns.push(defaultColumns);
-        columns.push(uniqueColumnsVisualisation);
-        dimensionalArray = [];
+        columns.push(...uniqueColumnsVisualisation);
     }
-
-    // console.log(dimensionalArray);
-    // console.log('Crateing Header');
-    // console.log(defaultRows);
-    // console.log(uniqueColumns);
-    // console.log(verticalTotalTitle);
-    // console.log('_________________');
 
     return createTablePart(defaultRows, columns, verticalTotalTitle);
 }
@@ -164,55 +205,41 @@ export function createBody(uniqueRows, uniqueColumns, tableValues, rowsTotal) {
     // console.log(rowsTotal);
     // console.log('__________________');
 
-    dimensionalArray = [];
-    temporaryArray = [];
     let tableValuesVisualisation = [];
 
     getUniqueRowsVisualisation(uniqueRows, 'first');
-    const uniqueRowsVisualisation = dimensionalArray;
-    dimensionalArray = [];
+    const uniqueRowsVisualisation = globalUniqueRows;
+    globalUniqueRows = [];
     // console.log(uniqueRowsVisualisation);
 
-    getRowsTotalVisualisation(rowsTotal, 'first');
-    let rowsTotalVisualisation = dimensionalArray;
-    dimensionalArray = [];
-
-    if (rowsTotalVisualisation.length > 1) {
-        // console.log(rowsTotalVisualisation);
-        rowsTotalVisualisation = compressMultipleArraysToOne(rowsTotalVisualisation);
-        // console.log(rowsTotalVisualisation[0]);
-    }
-    // console.log(rowsTotalVisualisation);
+    getRowsTotalVisualisation(rowsTotal, uniqueRows, 'first');
+    const rowsTotalVisualisation = globalRowsTotals;
+    globalRowsTotals = [];
+    // const rowsTotalVisualisation = [];
+    console.log(rowsTotalVisualisation);
 
 
-    if (tableValues) {
-        // console.log(tableValues);
-        // tableValuesVisualisation = compressMultipleArraysToOne(tableValues);
-        // getTableValuesVisualisation(tableValues, uniqueColumns);
-        tableValuesVisualisation = tableValues;
-        // console.log(tableValuesVisualisation);
-    }
+    // if (tableValues) {
+    //     // console.log(tableValues);
+    //     // tableValuesVisualisation = compressMultipleArraysToOne(tableValues);
+    //     // getTableValuesVisualisation(tableValues, uniqueColumns);
 
+    //     tableValuesVisualisation = tableValues;
 
-    return createTablePart(uniqueRowsVisualisation, tableValuesVisualisation, rowsTotalVisualisation[0]);
+    //     // console.log(tableValuesVisualisation);
+    // }
+
+    return createTablePart(uniqueRowsVisualisation, tableValuesVisualisation, rowsTotalVisualisation);
+    // return [['Body']];
 }
 
 export function createFooter(horizontalTotalTitle, uniqueColumns, columnsTotal, grandTotal) {
     let columnsTotalVisualisation = [];
 
-    // console.log('Creating Footer');
-    // console.log(horizontalTotalTitle);
-    // console.log(uniqueColumns);
-    // console.log(columnsTotal);
-    // console.log(grandTotal);
-    // console.log('__________________');
-
     if (columnsTotal) {
         getColumnsTotalVisualisation(columnsTotal, uniqueColumns, 'first');
-        // console.log(columnsTotal);
-        columnsTotalVisualisation = [dimensionalArray];
-        // console.log(columnsTotalVisualisation);
-        dimensionalArray = [];
+        columnsTotalVisualisation = [globalColumnsTotals];
+        globalColumnsTotals = [];
     }
 
     return createTablePart(horizontalTotalTitle, columnsTotalVisualisation, grandTotal);
