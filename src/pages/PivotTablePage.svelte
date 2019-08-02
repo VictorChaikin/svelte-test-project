@@ -498,7 +498,7 @@
           <th>990</th>
           <th>990</th>
           <th>990</th>
-          <th>810</th>
+          <th>1800</th>
         </tr>
       </tfoot>
     </table>

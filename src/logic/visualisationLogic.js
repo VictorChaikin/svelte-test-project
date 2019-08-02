@@ -55,50 +55,57 @@ let globalUniqueRows = [];
 let globalRowsTotals = [];
 let globalRowsItem = [];
 let globalColumnsTotals = [];
+let globalTableValues = [];
 let tableHeaderLayer = 0;
-let columnsTotalItemCounter = 0;
 let rowsTotalCounter = 0;
 
-function getUniqueColumnsVisualisation(uniqueColumns, first) {
+function getUniqueColumnsVisualisation(uniqueColumns, show) {
+    // console.log(uniqueColumns);
     for (let i = 0; i < uniqueColumns.length; i++) {
+        
+        // if (show !== 'donotShow') {
+            if (globalUniqueColumns[tableHeaderLayer]) {
+                globalUniqueColumns[tableHeaderLayer].push(uniqueColumns[i].label);
+            } else {
+                globalUniqueColumns.push([uniqueColumns[i].label]);
+            }
+        // }
+        // else {
+        //     if (globalUniqueColumns[tableHeaderLayer]) {
+        //         globalUniqueColumns[tableHeaderLayer].push(null);
+        //     } else {
+        //         globalUniqueColumns.push([null]);
+        //     }
+        // }
+        
 
-        if (uniqueColumns[i].subColumns) {
+        if (uniqueColumns[i].showSubColumns) {
             tableHeaderLayer++;
             getUniqueColumnsVisualisation(uniqueColumns[i].subColumns);
             tableHeaderLayer--;
         }
+        // else {
+        //     tableHeaderLayer++;
+        //     getUniqueColumnsVisualisation(uniqueColumns[i].subColumns, 'donotShow');
+        //     tableHeaderLayer--;
+        // }
 
-        // console.log(tableHeaderLayer);
+        // if (show !== 'donotShow') {
+            if (uniqueColumns[i].showSubColumns) {
+                const diff = globalUniqueColumns[tableHeaderLayer + 1].length - globalUniqueColumns[tableHeaderLayer].length;
+                for (let j = 0; j < diff; j++) {
+                    globalUniqueColumns[tableHeaderLayer].push(null);
+                }
 
-        if (globalUniqueColumns[tableHeaderLayer]) {
+                globalUniqueColumns[tableHeaderLayer].push(`${uniqueColumns[i].label} Total`);
 
-            // console.log(uniqueColumns[i].label);
-            globalUniqueColumns[tableHeaderLayer].push(uniqueColumns[i].label);
-        } else {
-            // console.log(uniqueColumns[i].label);
-
-            globalUniqueColumns[tableHeaderLayer] = [uniqueColumns[i].label];
-        }
-
-        if (uniqueColumns[i].subColumns) {
-            // console.log('Has subcolumns');
-            // console.log(tableHeaderVisualisationArray);
-            // console.log(tableHeaderLayer);
-            // console.log(uniqueColumns[i].label);
-            // console.log(tableHeaderVisualisationArray[tableHeaderLayer]);
-            // console.log(tableHeaderVisualisationArray[tableHeaderLayer + 1]);
-            const diff = globalUniqueColumns[tableHeaderLayer + 1].length - globalUniqueColumns[tableHeaderLayer].length;
-
-            for (let j = 0; j < diff; j++) {
-                globalUniqueColumns[tableHeaderLayer].push(null);
+                for (let k = tableHeaderLayer + 1; k < globalUniqueColumns.length; k++) {
+                    globalUniqueColumns[k].push(null);
+                }
+                console.log(uniqueColumns[i].label);
+                console.log(tableHeaderLayer);
             }
-
-            globalUniqueColumns[tableHeaderLayer].push(`${uniqueColumns[i].label} Total`);
-
-            for (let k = tableHeaderLayer + 1; k < globalUniqueColumns.length; k++) {
-                globalUniqueColumns[k].push(null);
-            }
-        }
+        // }
     }
 }
 
@@ -121,10 +128,24 @@ function getUniqueRowsVisualisation(uniqueRows, first) {
     }
 }
 
-function getTableValuesVisualisation(tableValues, uniqueColumns) {
+function visualiseTableValuesItem(tableValues, uniqueColumns, uniqueRows, first) {
+    
+}
+
+function getTableValuesVisualisation(tableValues, uniqueColumns, uniqueRows) {
     console.log(tableValues);
     console.log(uniqueColumns);
-    return [];
+    console.log(uniqueRows);
+    for (let i = 0; i < uniqueRows.length; i++){
+        globalTableValues.push([]);
+        for (let j = 0; j < uniqueColumns.length; j++){
+            if (tableValues[i][j].subColumns || tableValues[i][j].subRows) {
+                visualiseTableValuesItem(tableValues[i][j], uniqueColumns[j], uniqueRows[i]);
+            } else {
+                globalTableValues[i].push(tableValues[i][j].value);
+            }
+        }
+    }
 }
 
 function visualiseRowsTotalItem(totalRow, uniqueRow, first) {
@@ -135,13 +156,12 @@ function visualiseRowsTotalItem(totalRow, uniqueRow, first) {
         else {
             globalRowsTotals.push([totalRow[i].value]);
         }
-        
+
         rowsTotalCounter++;
         if (uniqueRow[i].showSubRows) {
-
             visualiseRowsTotalItem(totalRow[i].subRows, uniqueRow[i].subRows);
         }
-       
+
     }
 }
 
@@ -153,29 +173,12 @@ function getRowsTotalVisualisation(rowsTotal, uniqueRows, first) {
 }
 
 function getColumnsTotalVisualisation(columnsTotal, uniqueColumns, first) {
-    // console.log(uniqueColumns);
-    // console.log(columnsTotal);
     for (let i = 0; i < uniqueColumns.length; i++) {
         if (uniqueColumns[i].showSubColumns) {
-            if (first) {
-                getColumnsTotalVisualisation(columnsTotal[i], uniqueColumns[i].subColumns);
-            } else {
-                getColumnsTotalVisualisation(columnsTotal, uniqueColumns[i].subColumns);
-            }
-
-            columnsTotalItemCounter++;
+            getColumnsTotalVisualisation(columnsTotal[i].subColumns, uniqueColumns[i].subColumns);
         }
-
-        if (first) {
-            globalColumnsTotals.push(columnsTotal[i][columnsTotalItemCounter]);
-        } else {
-            globalColumnsTotals.push(columnsTotal[columnsTotalItemCounter]);
-        }
-
-        if (first) {
-            // console.log(globalColumnsTotals);
-            columnsTotalItemCounter = 0;
-        }
+        
+        globalColumnsTotals.push(columnsTotal[i].value);
     }
 }
 
@@ -183,13 +186,15 @@ export function createHeader(defaultRows, uniqueColumns, verticalTotalTitle) {
     const columns = [];
 
     if (uniqueColumns) {
-        getUniqueColumnsVisualisation(uniqueColumns, 'first');
+        getUniqueColumnsVisualisation(uniqueColumns, 'show');
         const uniqueColumnsVisualisation = globalUniqueColumns;
         globalUniqueColumns = [];
+        // console.log(uniqueColumnsVisualisation);
 
         const defaultColumns = new Array(uniqueColumnsVisualisation[0].length).fill(null);
         defaultColumns[0] = 'Columns Labels';
 
+        // console.log(tableHeaderLayer);
         columns.push(defaultColumns);
         columns.push(...uniqueColumnsVisualisation);
     }
@@ -198,36 +203,23 @@ export function createHeader(defaultRows, uniqueColumns, verticalTotalTitle) {
 }
 
 export function createBody(uniqueRows, uniqueColumns, tableValues, rowsTotal) {
-    // console.log('Creating Body');
-    // console.log(uniqueRows);
-    // console.log(uniqueColumns);
-    // console.log(tableValues);
-    // console.log(rowsTotal);
-    // console.log('__________________');
-
     let tableValuesVisualisation = [];
 
     getUniqueRowsVisualisation(uniqueRows, 'first');
     const uniqueRowsVisualisation = globalUniqueRows;
     globalUniqueRows = [];
-    // console.log(uniqueRowsVisualisation);
 
     getRowsTotalVisualisation(rowsTotal, uniqueRows, 'first');
     const rowsTotalVisualisation = globalRowsTotals;
     globalRowsTotals = [];
-    // const rowsTotalVisualisation = [];
-    console.log(rowsTotalVisualisation);
+    // console.log(rowsTotalVisualisation);
 
 
-    // if (tableValues) {
-    //     // console.log(tableValues);
-    //     // tableValuesVisualisation = compressMultipleArraysToOne(tableValues);
-    //     // getTableValuesVisualisation(tableValues, uniqueColumns);
-
-    //     tableValuesVisualisation = tableValues;
-
-    //     // console.log(tableValuesVisualisation);
-    // }
+    if (tableValues) {
+        getTableValuesVisualisation(tableValues, uniqueColumns, uniqueRows);
+        tableValuesVisualisation = globalTableValues;
+        globalTableValues = [];
+    }
 
     return createTablePart(uniqueRowsVisualisation, tableValuesVisualisation, rowsTotalVisualisation);
     // return [['Body']];
