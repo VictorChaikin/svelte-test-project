@@ -58,39 +58,44 @@ let globalColumnsTotals = [];
 let globalTableValues = [];
 let tableHeaderLayer = 0;
 let rowsTotalCounter = 0;
+let tableValuesCounter = 0;
 
 function getUniqueColumnsVisualisation(uniqueColumns, show) {
     // console.log(uniqueColumns);
+    // console.log(show);
     for (let i = 0; i < uniqueColumns.length; i++) {
-        
-        // if (show !== 'donotShow') {
+
+        if (show !== 'donotShow') {
             if (globalUniqueColumns[tableHeaderLayer]) {
                 globalUniqueColumns[tableHeaderLayer].push(uniqueColumns[i].label);
             } else {
                 globalUniqueColumns.push([uniqueColumns[i].label]);
             }
-        // }
-        // else {
-        //     if (globalUniqueColumns[tableHeaderLayer]) {
-        //         globalUniqueColumns[tableHeaderLayer].push(null);
-        //     } else {
-        //         globalUniqueColumns.push([null]);
-        //     }
-        // }
-        
+        }
+        else {
+            if (globalUniqueColumns[tableHeaderLayer]) {
+                globalUniqueColumns[tableHeaderLayer].push(null);
+            } else {
+                globalUniqueColumns.push([null]);
+            }
+        }
+
 
         if (uniqueColumns[i].showSubColumns) {
             tableHeaderLayer++;
-            getUniqueColumnsVisualisation(uniqueColumns[i].subColumns);
+            getUniqueColumnsVisualisation(uniqueColumns[i].subColumns, show);
             tableHeaderLayer--;
         }
-        // else {
-        //     tableHeaderLayer++;
-        //     getUniqueColumnsVisualisation(uniqueColumns[i].subColumns, 'donotShow');
-        //     tableHeaderLayer--;
-        // }
+        else {
+            if (uniqueColumns[i].subColumns) {
+                tableHeaderLayer++;
+                getUniqueColumnsVisualisation(uniqueColumns[i].subColumns, 'donotShow');
+                tableHeaderLayer--;
+            }
+        }
 
-        // if (show !== 'donotShow') {
+
+        if (show !== 'donotShow') {
             if (uniqueColumns[i].showSubColumns) {
                 const diff = globalUniqueColumns[tableHeaderLayer + 1].length - globalUniqueColumns[tableHeaderLayer].length;
                 for (let j = 0; j < diff; j++) {
@@ -102,10 +107,10 @@ function getUniqueColumnsVisualisation(uniqueColumns, show) {
                 for (let k = tableHeaderLayer + 1; k < globalUniqueColumns.length; k++) {
                     globalUniqueColumns[k].push(null);
                 }
-                console.log(uniqueColumns[i].label);
-                console.log(tableHeaderLayer);
+                // console.log(uniqueColumns[i].label);
+                // console.log(tableHeaderLayer);
             }
-        // }
+        }
     }
 }
 
@@ -128,19 +133,61 @@ function getUniqueRowsVisualisation(uniqueRows, first) {
     }
 }
 
-function visualiseTableValuesItem(tableValues, uniqueColumns, uniqueRows, first) {
-    
+function visualiseTableValuesItem(tableValue, uniqueColumn, uniqueRow, first) {
+    // console.log(tableValue);
+    // console.log(uniqueColumn);
+    // console.log(uniqueRow);
+
+    if (uniqueColumn.showSubColumns) {
+        for (let i = 0; i < uniqueColumn.subColumns.length; i++) {
+            visualiseTableValuesItem(tableValue.subColumns[i], uniqueColumn.subColumns[i], {});
+
+            if (globalTableValues[tableValuesCounter]) {
+                globalTableValues[tableValuesCounter].push(tableValue.value);
+            } else {
+                globalTableValues.push([tableValue.value]);
+            }
+            // console.log(tableValue.value);
+            // console.log(uniqueColumn.label);
+            // console.log(tableValuesCounter);
+        }
+    }
+
+    if (!uniqueColumn.showSubColumns) {
+        if (globalTableValues[tableValuesCounter]) {
+            globalTableValues[tableValuesCounter].push(tableValue.value);
+        } else {
+            globalTableValues.push([tableValue.value]);
+        }
+        // console.log(tableValue.value);
+        // console.log(uniqueColumn.label);
+        // console.log(tableValuesCounter);
+    }
+
+    if (uniqueRow.showSubRows) {
+        // console.log(uniqueRow);
+        for (let i = 0; i < uniqueRow.subRows.length; i++) {
+            tableValuesCounter++;
+            visualiseTableValuesItem(tableValue.subRows[i], uniqueColumn, uniqueRow.subRows[i]);
+        }
+    }
+
+    if (first) {
+        // console.log('ONEENENNENEEN');
+        // console.log(globalTableValues);
+        tableValuesCounter = 0;
+    }
 }
 
 function getTableValuesVisualisation(tableValues, uniqueColumns, uniqueRows) {
-    console.log(tableValues);
-    console.log(uniqueColumns);
-    console.log(uniqueRows);
-    for (let i = 0; i < uniqueRows.length; i++){
+    // console.log(tableValues);
+    // console.log(uniqueColumns);
+    // console.log(uniqueRows);
+    for (let i = 0; i < uniqueRows.length; i++) {
         globalTableValues.push([]);
-        for (let j = 0; j < uniqueColumns.length; j++){
+        for (let j = 0; j < uniqueColumns.length; j++) {
             if (tableValues[i][j].subColumns || tableValues[i][j].subRows) {
-                visualiseTableValuesItem(tableValues[i][j], uniqueColumns[j], uniqueRows[i]);
+                visualiseTableValuesItem(tableValues[i][j], uniqueColumns[j], uniqueRows[i], 'first');
             } else {
                 globalTableValues[i].push(tableValues[i][j].value);
             }
@@ -161,7 +208,6 @@ function visualiseRowsTotalItem(totalRow, uniqueRow, first) {
         if (uniqueRow[i].showSubRows) {
             visualiseRowsTotalItem(totalRow[i].subRows, uniqueRow[i].subRows);
         }
-
     }
 }
 
@@ -177,7 +223,7 @@ function getColumnsTotalVisualisation(columnsTotal, uniqueColumns, first) {
         if (uniqueColumns[i].showSubColumns) {
             getColumnsTotalVisualisation(columnsTotal[i].subColumns, uniqueColumns[i].subColumns);
         }
-        
+
         globalColumnsTotals.push(columnsTotal[i].value);
     }
 }

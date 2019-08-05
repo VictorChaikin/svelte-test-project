@@ -33,7 +33,7 @@
   </header>
 
   <div class="table-container">
-    <div class="title">
+    <!-- <div class="title">
       <h3>{examples[0].title} Component Example</h3>
     </div>
 
@@ -99,9 +99,9 @@
           <th>81883</th>
         </tr>
       </tfoot>
-    </table>
+    </table> -->
 
-    <div class="tables-row">
+    <!-- <div class="tables-row">
       <div>
         <div class="title">
           <h3>{examples[1].title} Component Example</h3>
@@ -184,11 +184,11 @@
             </tr>
           </tfoot>
         </table>
-      </div>
+      </div> -->
 
-    </div>
+    <!-- </div> -->
 
-    <div class="title">
+    <!-- <div class="title">
       <h3>{examples[2].title} Component Example</h3>
     </div>
 
@@ -276,9 +276,9 @@
           <th>8188.3</th>
         </tr>
       </tfoot>
-    </table>
+    </table> -->
 
-    <div class="title">
+    <!-- <div class="title">
       <h3>{examples[3].title} Component Example</h3>
     </div>
 
@@ -375,7 +375,7 @@
           <th>7602.8</th>
         </tr>
       </tfoot>
-    </table> 
+    </table>  -->
 
     <div class="title">
       <h3>{examples[4].title} Component Example</h3>

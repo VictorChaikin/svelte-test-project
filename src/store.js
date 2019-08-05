@@ -276,7 +276,7 @@ const fifthExample = {
       subRows: [
         {
           label: '123 10th Street',
-          showSubRows: true,
+          showSubRows: false,
           subRows: [
             {
               label: 'Chicago'
@@ -285,7 +285,7 @@ const fifthExample = {
         },
         {
           label: '789 25th Street',
-          showSubRows: true,
+          showSubRows: false,
           subRows: [
             {
               label: 'Chicago'
@@ -296,152 +296,152 @@ const fifthExample = {
     },
   ],
 
-  // tableValues: [
-  //   [
-  //     {
-  //       value: 810,
-  //       subColumns: [
-  //         {
-  //           value: 810,
-  //           subColumns: [
-  //             {
-  //               value: 810
-  //             }
-  //           ]
-  //         }
-  //       ],
-  //       subRows: [
-  //         {
-  //           value: 810,
-  //           subColumns: [
-  //             {
-  //               value: 810,
-  //               subColumns: [
-  //                 {
-  //                   value: 810
-  //                 }
-  //               ]
-  //             }
-  //           ],
-  //           subRows: [
-  //             {
-  //               value: 810,
-  //               subColumns: [
-  //                 {
-  //                   value: 810,
-  //                   subColumns: [
-  //                     {
-  //                       value: 810
-  //                     }
-  //                   ]
-  //                 }
-  //               ],
-  //             }
-  //           ]
-  //         },
-  //         {
-  //           value: null,
-  //           subColumns: [
-  //             {
-  //               value: null,
-  //               subColumns: [
-  //                 {
-  //                   value: null
-  //                 }
-  //               ]
-  //             }
-  //           ],
-  //           subRows: [
-  //             {
-  //               value: null,
-  //               subColumns: [
-  //                 {
-  //                   value: null,
-  //                   subColumns: [
-  //                     {
-  //                       value: null
-  //                     }
-  //                   ]
-  //                 }
-  //               ],
-  //             }
-  //           ]
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       value: 990,
-  //       subColumns: [
-  //         {
-  //           value: 990,
-  //           subColumns: [
-  //             {
-  //               value: 990
-  //             }
-  //           ]
-  //         }
-  //       ],
-  //       subRows: [
-  //         {
-  //           value: null,
-  //           subColumns: [
-  //             {
-  //               value: null,
-  //               subColumns: [
-  //                 {
-  //                   value: null
-  //                 }
-  //               ]
-  //             }
-  //           ],
-  //           subRows: [
-  //             {
-  //               value: null,
-  //               subColumns: [
-  //                 {
-  //                   value: null,
-  //                   subColumns: [
-  //                     {
-  //                       value: null
-  //                     }
-  //                   ]
-  //                 }
-  //               ],
-  //             }
-  //           ]
-  //         },
-  //         {
-  //           value: 990,
-  //           subColumns: [
-  //             {
-  //               value: 990,
-  //               subColumns: [
-  //                 {
-  //                   value: 990
-  //                 }
-  //               ]
-  //             }
-  //           ],
-  //           subRows: [
-  //             {
-  //               value: 990,
-  //               subColumns: [
-  //                 {
-  //                   value: 990,
-  //                   subColumns: [
-  //                     {
-  //                       value: 990
-  //                     }
-  //                   ]
-  //                 }
-  //               ],
-  //             }
-  //           ]
-  //         }
-  //       ]
-  //     }
-  //   ]
-  // ],
+  tableValues: [
+    [
+      {
+        value: 810,
+        subColumns: [
+          {
+            value: 810,
+            subColumns: [
+              {
+                value: 810
+              }
+            ]
+          }
+        ],
+        subRows: [
+          {
+            value: 810,
+            subColumns: [
+              {
+                value: 810,
+                subColumns: [
+                  {
+                    value: 810
+                  }
+                ]
+              }
+            ],
+            subRows: [
+              {
+                value: 810,
+                subColumns: [
+                  {
+                    value: 810,
+                    subColumns: [
+                      {
+                        value: 810
+                      }
+                    ]
+                  }
+                ],
+              }
+            ]
+          },
+          {
+            value: null,
+            subColumns: [
+              {
+                value: null,
+                subColumns: [
+                  {
+                    value: null
+                  }
+                ]
+              }
+            ],
+            subRows: [
+              {
+                value: null,
+                subColumns: [
+                  {
+                    value: null,
+                    subColumns: [
+                      {
+                        value: null
+                      }
+                    ]
+                  }
+                ],
+              }
+            ]
+          }
+        ]
+      },
+      {
+        value: 990,
+        subColumns: [
+          {
+            value: 990,
+            subColumns: [
+              {
+                value: 990
+              }
+            ]
+          }
+        ],
+        subRows: [
+          {
+            value: null,
+            subColumns: [
+              {
+                value: null,
+                subColumns: [
+                  {
+                    value: null
+                  }
+                ]
+              }
+            ],
+            subRows: [
+              {
+                value: null,
+                subColumns: [
+                  {
+                    value: null,
+                    subColumns: [
+                      {
+                        value: null
+                      }
+                    ]
+                  }
+                ],
+              }
+            ]
+          },
+          {
+            value: 990,
+            subColumns: [
+              {
+                value: 990,
+                subColumns: [
+                  {
+                    value: 990
+                  }
+                ]
+              }
+            ],
+            subRows: [
+              {
+                value: 990,
+                subColumns: [
+                  {
+                    value: 990,
+                    subColumns: [
+                      {
+                        value: 990
+                      }
+                    ]
+                  }
+                ],
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  ],
 
   rowsTotal: [
     [
