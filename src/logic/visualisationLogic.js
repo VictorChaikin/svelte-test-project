@@ -67,9 +67,21 @@ function getUniqueColumnsVisualisation(uniqueColumns, show) {
 
         if (show !== 'donotShow') {
             if (globalUniqueColumns[tableHeaderLayer]) {
-                globalUniqueColumns[tableHeaderLayer].push(uniqueColumns[i].label);
+                uniqueColumns[i].subColumns ?
+                    globalUniqueColumns[tableHeaderLayer].push({
+                        label: uniqueColumns[i].label,
+                        showSubColumns: uniqueColumns[i].showSubColumns,
+                        path: uniqueColumns[i].path
+                    })
+                    : globalUniqueColumns[tableHeaderLayer].push(uniqueColumns[i].label);
             } else {
-                globalUniqueColumns.push([uniqueColumns[i].label]);
+                uniqueColumns[i].subColumns ?
+                    globalUniqueColumns.push([{
+                        label: uniqueColumns[i].label,
+                        showSubColumns: uniqueColumns[i].showSubColumns,
+                        path: uniqueColumns[i].path
+                    }])
+                    : globalUniqueColumns.push([uniqueColumns[i].label]);
             }
         }
         else {
@@ -116,14 +128,21 @@ function getUniqueColumnsVisualisation(uniqueColumns, show) {
 
 function getUniqueRowsVisualisation(uniqueRows, first) {
     for (let i = 0; i < uniqueRows.length; i++) {
-        if (uniqueRows[i].showSubRows) {
+        if (uniqueRows[i].subRows) {
+            // console.log(uniqueRows[i].label);
+            globalRowsItem.push([{
+                label: uniqueRows[i].label,
+                showSubRows: uniqueRows[i].showSubRows,
+                path: uniqueRows[i].path
+            }]);
+        } else {
             globalRowsItem.push([uniqueRows[i].label]);
 
-            getUniqueRowsVisualisation(uniqueRows[i].subRows);
         }
 
-        if (!uniqueRows[i].showSubRows) {
-            globalRowsItem.push([uniqueRows[i].label]);
+        if (uniqueRows[i].showSubRows) {
+
+            getUniqueRowsVisualisation(uniqueRows[i].subRows);
         }
 
         if (first) {
@@ -254,6 +273,7 @@ export function createBody(uniqueRows, uniqueColumns, tableValues, rowsTotal) {
     getUniqueRowsVisualisation(uniqueRows, 'first');
     const uniqueRowsVisualisation = globalUniqueRows;
     globalUniqueRows = [];
+    // console.log(uniqueRowsVisualisation);
 
     getRowsTotalVisualisation(rowsTotal, uniqueRows, 'first');
     const rowsTotalVisualisation = globalRowsTotals;

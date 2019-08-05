@@ -1,7 +1,8 @@
 <script>
   import { Link } from "svelte-routing";
   import PivotTable from "../components/PivotTable.svelte";
-  import { examples } from "../store";
+  import { fifthExample, counter } from "../store.js";
+  import Component from '../components/someComponent.svelte';
 
 </script>
 
@@ -378,11 +379,11 @@
     </table>  -->
 
     <div class="title">
-      <h3>{examples[4].title} Component Example</h3>
+      <h3>{$fifthExample.title} Component Example</h3>
     </div>
 
     <div class="table">
-      <PivotTable data={examples[4]} />
+      <PivotTable data={$fifthExample} />
     </div>
 
     <div>
@@ -501,7 +502,8 @@
           <th>1800</th>
         </tr>
       </tfoot>
-    </table>
+    </table> 
 
-  </div>
+   </div> 
+  <!-- <Component obj ={data1}/> -->
 </div>

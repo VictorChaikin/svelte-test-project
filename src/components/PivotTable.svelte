@@ -7,7 +7,7 @@
   } from "../logic/visualisationLogic.js";
   import Cell from "./TableCell.svelte";
 
-  const header = createHeader(
+  let header = createHeader(
     data.rowsTitle,
     data.uniqueColumns,
     data.verticalTotalTitle
@@ -24,13 +24,36 @@
     );
   }
 
-  const footer = createFooter(
+  let footer = createFooter(
     data.horizontalTotalTitle,
     data.uniqueColumns,
     data.columnsTotal,
     data.grandTotal
   );
 
+  $: {
+    header = createHeader(
+      data.rowsTitle,
+      data.uniqueColumns,
+      data.verticalTotalTitle
+    );
+
+    if (data.uniqueRows) {
+      body = createBody(
+        data.uniqueRows,
+        data.uniqueColumns,
+        data.tableValues,
+        data.rowsTotal
+      );
+    }
+
+    footer = createFooter(
+      data.horizontalTotalTitle,
+      data.uniqueColumns,
+      data.columnsTotal,
+      data.grandTotal
+    );
+  }
   // console.log(header);
   // console.log(body);
   // console.log(footer);
@@ -41,7 +64,7 @@
   {#each header as headerRow}
     <tr>
       {#each headerRow as headerItem}
-        <Cell data={headerItem} tablePart="header" />
+        <Cell tableData={data} data={headerItem} tablePart="header" />
       {/each}
     </tr>
   {/each}
@@ -50,7 +73,7 @@
     {#each body as bodyRow}
       <tr>
         {#each bodyRow as bodyItem}
-          <Cell data={bodyItem} tablePart="body" />
+          <Cell tableData={data} data={bodyItem} tablePart="body" />
         {/each}
       </tr>
     {/each}
@@ -59,7 +82,7 @@
   {#each footer as footerRow}
     <tr>
       {#each footerRow as footerItem}
-        <Cell data={footerItem} tablePart="footer" />
+        <Cell tableData={data} data={footerItem} tablePart="footer" />
       {/each}
     </tr>
   {/each}

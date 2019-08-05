@@ -1,4 +1,5 @@
 import jsonData from '../src/data/data.json';
+import { writable } from 'svelte/store';
 
 const firstExample = {
   title: 'Columns and Values',
@@ -222,7 +223,9 @@ const forthExample = {
   ]
 };
 
-const fifthExample = {
+export const counter = writable(13);
+
+export const fifthExample = writable({
   title: 'All fields with 2 values',
 
   rowsTitle: [
@@ -235,10 +238,12 @@ const fifthExample = {
   uniqueColumns: [
     {
       label: '12/10/14',
+      path: ['12/10/14'],
       showSubColumns: true,
       subColumns: [
         {
           label: 'Drie Fruit & Nuts',
+          path: ['12/10/14', 'Drie Fruit & Nuts'],
           showSubColumns: true,
           subColumns: [
             {
@@ -250,10 +255,12 @@ const fifthExample = {
     },
     {
       label: '12/25/14',
+      path: ['12/25/14'],
       showSubColumns: true,
       subColumns: [
         {
           label: 'Baked Goods & Mixes',
+          path: ['12/25/14', 'Baked Goods & Mixes'],
           showSubColumns: true,
           subColumns: [
             {
@@ -272,11 +279,13 @@ const fifthExample = {
   uniqueRows: [
     {
       label: 'Laura Giussani',
+      path: ['Laura Giussani'],
       showSubRows: true,
       subRows: [
         {
           label: '123 10th Street',
-          showSubRows: false,
+          path: ['Laura Giussani', '123 10th Street'],
+          showSubRows: true,
           subRows: [
             {
               label: 'Chicago'
@@ -285,7 +294,8 @@ const fifthExample = {
         },
         {
           label: '789 25th Street',
-          showSubRows: false,
+          path: ['Laura Giussani', '789 25th Street'],
+          showSubRows: true,
           subRows: [
             {
               label: 'Chicago'
@@ -539,15 +549,15 @@ const fifthExample = {
   ],
 
   grandTotal: [[1800]]
-};
+});
 
-export const examples = [
-  firstExample,
-  secondExample,
-  thirdExample,
-  forthExample,
-  fifthExample
-];
+// export const examples = [
+//   // firstExample,
+//   // secondExample,
+//   // thirdExample,
+//   // forthExample,
+//   fifthExample
+// ];
 
 // export const configurator = {
 //   filters: [],
