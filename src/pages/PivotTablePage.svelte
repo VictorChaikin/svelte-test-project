@@ -1,9 +1,7 @@
 <script>
   import { Link } from "svelte-routing";
   import PivotTable from "../components/PivotTable.svelte";
-  import { fifthExample, counter } from "../store.js";
-  import Component from '../components/someComponent.svelte';
-
+  import { sixthExample, fifthExample, examples } from "../store.js";
 </script>
 
 <style>
@@ -19,10 +17,10 @@
     height: calc(100% - 119px); */
   }
 
-  .tables-row {
+  /* .tables-row {
     display: flex;
     justify-content: space-around;
-  }
+  } */
 </style>
 
 <div class="pivot-table-page">
@@ -48,22 +46,6 @@
 
     <table>
       <thead>
-        <tr>
-          <th />
-          <th>Column Labels</th>
-          <th />
-          <th />
-          <th />
-          <th />
-          <th />
-          <th />
-          <th />
-          <th />
-          <th />
-          <th />
-          <th />
-          <th />
-        </tr>
         <tr>
           <th />
           <th>CA</th>
@@ -185,9 +167,8 @@
             </tr>
           </tfoot>
         </table>
-      </div> -->
-
-    <!-- </div> -->
+      </div>
+    </div> -->
 
     <!-- <div class="title">
       <h3>{examples[2].title} Component Example</h3>
@@ -294,11 +275,6 @@
     <table>
       <thead>
         <tr>
-          <th>Sum of revenue</th>
-          <th>Column Labels</th>
-          <th colspan="6" />
-        </tr>
-        <tr>
           <th>Row Labels</th>
           <th>Company A</th>
           <th>Company BB</th>
@@ -376,9 +352,9 @@
           <th>7602.8</th>
         </tr>
       </tfoot>
-    </table>  -->
+    </table> -->
 
-    <div class="title">
+    <!-- <div class="title">
       <h3>{$fifthExample.title} Component Example</h3>
     </div>
 
@@ -392,17 +368,6 @@
 
     <table>
       <thead>
-        <tr>
-          <th>Sum of revenue</th>
-          <th>Column Labels</th>
-          <th />
-          <th />
-          <th />
-          <th />
-          <th />
-          <th />
-        </tr>
-
         <tr>
           <th />
           <th>12/10/14</th>
@@ -502,8 +467,339 @@
           <th>1800</th>
         </tr>
       </tfoot>
-    </table> 
+    </table> -->
 
-   </div> 
-  <!-- <Component obj ={data1}/> -->
+    <div class="title">
+      <h3>{$sixthExample.title} Component Example</h3>
+    </div>
+
+    <div class="table">
+      <PivotTable data={$sixthExample} />
+    </div>
+
+    <div>
+      <h3>Sixth Example HTML</h3>
+    </div>
+
+    <!-- <table>
+      <thead>
+
+        <tr>
+          <th />
+          <th>12/04/14</th>
+          <th />
+          <th />
+          <th />
+          <th>12/04/14 Sum of revenue</th>
+          <th>12/04/14 Sum of shopping_fee</th>
+          <th>12/10/14</th>
+          <th />
+          <th />
+          <th />
+          <th>12/10/14 Sum of revenue</th>
+          <th>12/10/14 Sum of shopping_fee</th>
+          <th>12/25/14</th>
+          <th />
+          <th />
+          <th />
+          <th>12/25/14 Sum of revenue</th>
+          <th>12/25/14 Sum of shopping_fee</th>
+          <th>Total Sum of reveneu</th>
+          <th>Total Sum of shipping_fee</th>
+        </tr>
+
+        <tr>
+          <th />
+          <th>Grains</th>
+          <th />
+          <th>Grains Sum of revenue</th>
+          <th>Grains Sum of shipping_fee</th>
+          <th />
+          <th />
+          <th>Dried Fruits & Nuts</th>
+          <th />
+          <th>Dried Fruits & Nuts Sum of revenue</th>
+          <th>Dried Fruits & Nuts Sum of shipping_fee</th>
+          <th />
+          <th />
+          <th>Bakes Goods & Mixes</th>
+          <th />
+          <th>Bakes Goods & Mixes Sum of revenue</th>
+          <th>Bakes Goods & Mixes Sum of shipping_fee</th>
+          <th />
+          <th />
+          <th />
+          <th />
+        </tr>
+
+        <tr>
+          <th />
+          <th>Long Grain Rice</th>
+          <th />
+          <th />
+          <th />
+          <th />
+          <th />
+          <th>Almonds</th>
+          <th />
+          <th />
+          <th />
+          <th />
+          <th />
+          <th>Scones</th>
+          <th />
+          <th />
+          <th />
+          <th />
+          <th />
+          <th />
+          <th />
+        </tr>
+
+        <tr>
+          <th>Row Labels</th>
+          <th>Sum of revenue</th>
+          <th>Sum of shipping_fee</th>
+          <th />
+          <th />
+          <th />
+          <th />
+          <th>Sum of revenue</th>
+          <th>Sum of shipping_fee</th>
+          <th />
+          <th />
+          <th />
+          <th />
+          <th>Sum of revenue</th>
+          <th>Sum of shipping_fee</th>
+          <th />
+          <th />
+          <th />
+          <th />
+          <th />
+          <th />
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>Andrew Cecini</td>
+          <td>637</td>
+          <td>63.7</td>
+          <td>637</td>
+          <td>63.7</td>
+          <td>637</td>
+          <td>63.7</td>
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+          <td>637</td>
+          <td>63.7</td>
+        </tr>
+
+        <tr>
+          <td>123 4th Street</td>
+          <td>637</td>
+          <td>63.7</td>
+          <td>637</td>
+          <td>63.7</td>
+          <td>637</td>
+          <td>63.7</td>
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+          <td>637</td>
+          <td>63.7</td>
+        </tr>
+
+        <tr>
+          <td>New York</td>
+          <td>637</td>
+          <td>63.7</td>
+          <td>637</td>
+          <td>63.7</td>
+          <td>637</td>
+          <td>63.7</td>
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+          <td>637</td>
+          <td>63.7</td>
+        </tr>
+
+        <tr>
+          <td>Laura Giussani</td>
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+          <td>810</td>
+          <td>81</td>
+          <td>810</td>
+          <td>81</td>
+          <td>810</td>
+          <td>81</td>
+          <td>990</td>
+          <td>99</td>
+          <td>990</td>
+          <td>99</td>
+          <td>990</td>
+          <td>99</td>
+          <td>1800</td>
+          <td>180</td>
+        </tr>
+
+        <tr>
+          <td>123 10th Street</td>
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+          <td>810</td>
+          <td>81</td>
+          <td>810</td>
+          <td>81</td>
+          <td>810</td>
+          <td>81</td>
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+          <td>810</td>
+          <td>81</td>
+        </tr>
+
+        <tr>
+          <td>Chicago</td>
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+          <td>810</td>
+          <td>81</td>
+          <td>810</td>
+          <td>81</td>
+          <td>810</td>
+          <td>81</td>
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+          <td>810</td>
+          <td>81</td>
+        </tr>
+
+        <tr>
+          <td>789 25th Street</td>
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+          <td>990</td>
+          <td>99</td>
+          <td>990</td>
+          <td>99</td>
+          <td>990</td>
+          <td>99</td>
+          <td>990</td>
+          <td>99</td>
+        </tr>
+
+        <tr>
+          <td>Chicago</td>
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+          <td />
+          <td>990</td>
+          <td>99</td>
+          <td>990</td>
+          <td>99</td>
+          <td>990</td>
+          <td>99</td>
+          <td>990</td>
+          <td>99</td>
+        </tr>
+      </tbody>
+
+      <tfoot>
+        <tr>
+          <th>Grand Total</th>
+          <th>637</th>
+          <th>63.7</th>
+          <th>637</th>
+          <th>63.7</th>
+          <th>637</th>
+          <th>63.7</th>
+          <th>810</th>
+          <th>81</th>
+          <th>810</th>
+          <th>81</th>
+          <th>810</th>
+          <th>81</th>
+          <th>990</th>
+          <th>99</th>
+          <th>990</th>
+          <th>99</th>
+          <th>990</th>
+          <th>99</th>
+          <th>2437</th>
+          <th>243.7</th>
+        </tr>
+      </tfoot>
+    </table> -->
+  </div>
 </div>

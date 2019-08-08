@@ -1,10 +1,17 @@
-import jsonData from '../src/data/data.json';
 import { writable } from 'svelte/store';
+import jsonData from '../src/data/data.json';
+
+// export const configurator = {
+//   filters: [],
+//   columns: ['state'],
+//   rows: [],
+//   values: ['revenue', 'shipping_fee']
+// };
 
 const firstExample = {
   title: 'Columns and Values',
 
-  rowsTitle: [[null], [null]],
+  rowsTitle: [[null]],
 
   uniqueColumns: [
     { label: 'CA' },
@@ -21,7 +28,7 @@ const firstExample = {
     { label: 'WI' }
   ],
 
-  verticalTotalTitle: [[null], ['Grand Total']],
+  verticalTotalTitle: [['Grand Total']],
 
   horizontalTotalTitle: [
     ['Sum of revenue']
@@ -161,7 +168,6 @@ const forthExample = {
   title: 'All fields with 1 value',
 
   rowsTitle: [
-    ['Sum of revenue'],
     ['Row Labels']
   ],
 
@@ -175,7 +181,6 @@ const forthExample = {
   ],
 
   verticalTotalTitle: [
-    [null],
     ['Grand Total']
   ],
 
@@ -223,14 +228,18 @@ const forthExample = {
   ]
 };
 
-export const counter = writable(13);
-
 export const fifthExample = writable({
   title: 'All fields with 2 values',
 
+  configurator: {
+    filters: [],
+    columns: ['state'],
+    rows: [],
+    values: ['revenue']
+  },
+
   rowsTitle: [
     ['Sum of revenue'],
-    [null],
     [null],
     ['Row Labels']
   ],
@@ -273,7 +282,7 @@ export const fifthExample = writable({
   ],
 
   verticalTotalTitle: [
-    [null], ['Grand Total'], [null], [null]
+    ['Grand Total'], [null], [null]
   ],
 
   uniqueRows: [
@@ -522,9 +531,6 @@ export const fifthExample = writable({
           subColumns: [
             {
               value: 810
-            },
-            {
-              value: 810
             }
           ]
         }
@@ -538,9 +544,6 @@ export const fifthExample = writable({
           subColumns: [
             {
               value: 990
-            },
-            {
-              value: 990
             }
           ]
         }
@@ -551,20 +554,601 @@ export const fifthExample = writable({
   grandTotal: [[1800]]
 });
 
-// export const examples = [
-//   // firstExample,
-//   // secondExample,
-//   // thirdExample,
-//   // forthExample,
-//   fifthExample
-// ];
+export const sixthExample = writable({
+  title: 'Maximum Scalable',
 
-// export const configurator = {
-//   filters: [],
-//   columns: ['state'],
-//   rows: [],
-//   values: ['revenue']
-// };
+  configurator: {
+    filters: [],
+    columns: ['state'],
+    rows: [],
+    values: ['revenue', 'shipping_fee']
+  },
+
+  rowsTitle: [
+    [null],
+    [null],
+    [null],
+    ['Row Labels']
+  ],
+
+  uniqueColumns: [
+    {
+      label: '12/04/14',
+      path: ['12/04/14'],
+      showSubColumns: true,
+      subColumns: [
+        {
+          label: 'Grains',
+          path: ['12/04/14', 'Grains'],
+          showSubColumns: true,
+          subColumns: [
+            {
+              label: 'Long Grain Rice'
+            }
+          ]
+        }
+      ]
+    },
+    // {
+    //   label: '12/10/14',
+    //   path: ['12/10/14'],
+    //   showSubColumns: true,
+    //   subColumns: [
+    //     {
+    //       label: 'Dried Fruit & Nuts',
+    //       path: ['12/10/14', 'Dried Fruit & Nuts'],
+    //       showSubColumns: true,
+    //       subColumns: [
+    //         {
+    //           label: 'Almonds'
+    //         },
+    //       ]
+    //     }
+    //   ]
+    // },
+    // {
+    //   label: '12/25/14',
+    //   path: ['12/25/14'],
+    //   showSubColumns: true,
+    //   subColumns: [
+    //     {
+    //       label: 'Baked Goods & Mixes',
+    //       path: ['12/25/14', 'Baked Goods & Mixes'],
+    //       showSubColumns: true,
+    //       subColumns: [
+    //         {
+    //           label: 'Scones'
+    //         },
+    //       ]
+    //     }
+    //   ]
+    // }
+  ],
+
+  verticalTotalTitle: [
+    ['Total Sum of revenue', 'Total Sum of shipping_fee'],
+    [null, null],
+    [null, null],
+    [null, null]
+  ],
+
+  uniqueRows: [
+    {
+      label: 'Andrew Cecini',
+      path: ['Andrew Cecini'],
+      showSubRows: true,
+      subRows: [
+        {
+          label: '123 4th Street',
+          path: ['Andrew Cecini', '123 4th Street'],
+          showSubRows: true,
+          subRows: [
+            {
+              label: 'New York'
+            }
+          ]
+        }
+      ]
+    },
+    {
+      label: 'Laura Giussani',
+      path: ['Laura Giussani'],
+      showSubRows: true,
+      subRows: [
+        {
+          label: '123 10th Street',
+          path: ['Laura Giussani', '123 10th Street'],
+          showSubRows: true,
+          subRows: [
+            {
+              label: 'Chicago'
+            }
+          ]
+        },
+        {
+          label: '789 25th Street',
+          path: ['Laura Giussani', '789 25th Street'],
+          showSubRows: true,
+          subRows: [
+            {
+              label: 'Chicago'
+            }
+          ]
+        }
+      ]
+    },
+  ],
+
+  tableValues: [
+    [
+      {
+        value: [637, 63.7],
+        subColumns: [
+          {
+            value: [637, 63.7],
+            subColumns: [
+              {
+                value: [637, 63.7]
+              }
+            ]
+          }
+        ],
+        subRows: [{
+          value: [637, 63.7],
+          subColumns: [
+            {
+              value: [637, 63.7],
+              subColumns: [
+                {
+                  value: [637, 63.7]
+                }
+              ]
+            }
+          ],
+          subRows: [
+            {
+              value: [637, 63.7],
+              subColumns: [
+                {
+                  value: [637, 63.7],
+                  subColumns: [
+                    {
+                      value: [637, 63.7]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }]
+      },
+      {
+        value: [null, null],
+        subColumns: [
+          {
+            value: [null, null],
+            subColumns: [
+              {
+                value: [null, null]
+              }
+            ]
+          }
+        ],
+        subRows: [{
+          value: [null, null],
+          subColumns: [
+            {
+              value: [null, null],
+              subColumns: [
+                {
+                  value: [null, null]
+                }
+              ]
+            }
+          ],
+          subRows: [
+            {
+              value: [null, null],
+              subColumns: [
+                {
+                  value: [null, null],
+                  subColumns: [
+                    {
+                      value: [null, null]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }]
+      },
+      {
+        value: [null, null],
+        subColumns: [
+          {
+            value: [null, null],
+            subColumns: [
+              {
+                value: [null, null]
+              }
+            ]
+          }
+        ],
+        subRows: [{
+          value: [null, null],
+          subColumns: [
+            {
+              value: [null, null],
+              subColumns: [
+                {
+                  value: [null, null]
+                }
+              ]
+            }
+          ],
+          subRows: [
+            {
+              value: [null, null],
+              subColumns: [
+                {
+                  value: [null, null],
+                  subColumns: [
+                    {
+                      value: [null, null]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }]
+      }
+    ],
+    [
+      {
+        value: [null, null],
+        subColumns: [
+          {
+            value: [null, null],
+            subColumns: [
+              {
+                value: [null, null]
+              }
+            ]
+          }
+        ],
+        subRows: [
+          {
+            value: [null, null],
+            subColumns: [
+              {
+                value: [null, null],
+                subColumns: [
+                  {
+                    value: [null, null]
+                  }
+                ]
+              }
+            ],
+            subRows: [
+              {
+                value: [null, null],
+                subColumns: [
+                  {
+                    value: [null, null],
+                    subColumns: [
+                      {
+                        value: [null, null]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            value: [null, null],
+            subColumns: [
+              {
+                value: [null, null],
+                subColumns: [
+                  {
+                    value: [null, null]
+                  }
+                ]
+              }
+            ],
+            subRows: [
+              {
+                value: [null, null],
+                subColumns: [
+                  {
+                    value: [null, null],
+                    subColumns: [
+                      {
+                        value: [null, null]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        value: [810, 81],
+        subColumns: [
+          {
+            value: [810, 81],
+            subColumns: [
+              {
+                value: [810, 81]
+              }
+            ]
+          }
+        ],
+        subRows: [
+          {
+            value: [810, 81],
+            subColumns: [
+              {
+                value: [810, 81],
+                subColumns: [
+                  {
+                    value: [810, 81]
+                  }
+                ]
+              }
+            ],
+            subRows: [
+              {
+                value: [810, 81],
+                subColumns: [
+                  {
+                    value: [810, 81],
+                    subColumns: [
+                      {
+                        value: [810, 81]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            value: [null, null],
+            subColumns: [
+              {
+                value: [null, null],
+                subColumns: [
+                  {
+                    value: [null, null]
+                  }
+                ]
+              }
+            ],
+            subRows: [
+              {
+                value: [null, null],
+                subColumns: [
+                  {
+                    value: [null, null],
+                    subColumns: [
+                      {
+                        value: [null, null]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        value: [990, 99],
+        subColumns: [
+          {
+            value: [990, 99],
+            subColumns: [
+              {
+                value: [990, 99]
+              }
+            ]
+          }
+        ],
+        subRows: [
+          {
+            value: [990, 99],
+            subColumns: [
+              {
+                value: [990, 99],
+                subColumns: [
+                  {
+                    value: [990, 99]
+                  }
+                ]
+              }
+            ],
+            subRows: [
+              {
+                value: [990, 99],
+                subColumns: [
+                  {
+                    value: [990, 99],
+                    subColumns: [
+                      {
+                        value: [990, 99]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            value: [null, null],
+            subColumns: [
+              {
+                value: [null, null],
+                subColumns: [
+                  {
+                    value: [null, null]
+                  }
+                ]
+              }
+            ],
+            subRows: [
+              {
+                value: [null, null],
+                subColumns: [
+                  {
+                    value: [null, null],
+                    subColumns: [
+                      {
+                        value: [null, null]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  ],
+
+  rowsTotal: [
+    [
+      {
+        value: 637,
+        subRows: [{
+          value: 637,
+          subRows: [
+            {
+              value: 637
+            }
+          ]
+        }]
+      },
+      {
+        value: 1800,
+        subRows: [
+          {
+            value: 810,
+            subRows: [
+              {
+                value: 810
+              }
+            ]
+          },
+          {
+            value: 990,
+            subRows: [
+              {
+                value: 990
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    [
+      {
+        value: 63.7,
+        subRows: [{
+          value: 63.7,
+          subRows: [
+            {
+              value: 63.7
+            }
+          ]
+        }]
+      },
+      {
+        value: 180,
+        subRows: [
+          {
+            value: 81,
+            subRows: [
+              {
+                value: 81
+              }
+            ]
+          },
+          {
+            value: 99,
+            subRows: [
+              {
+                value: 99
+              }
+            ]
+          }
+        ]
+      }
+    ],
+  ],
+
+  horizontalTotalTitle: [
+    ['Grand Total']
+  ],
+
+  columnsTotal: [
+    {
+      value: [637, 63.7],
+      subColumns: [
+        {
+          value: [637, 63.7],
+          subColumns: [
+            {
+              value: [637, 63.7]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      value: [810, 81],
+      subColumns: [
+        {
+          value: [810, 81],
+          subColumns: [
+            {
+              value: [810, 81]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      value: [990, 99],
+      subColumns: [
+        {
+          value: [990, 99],
+          subColumns: [
+            {
+              value: [990, 99]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+
+  grandTotal: [[2437, 243.7]]
+});
+
+export const examples = [
+  firstExample,
+  secondExample,
+  thirdExample,
+  forthExample,
+  fifthExample
+];
 
 export const data = jsonData;
 

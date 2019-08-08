@@ -7,56 +7,61 @@
   } from "../logic/visualisationLogic.js";
   import Cell from "./TableCell.svelte";
 
+  // console.log(data.configurator);
+
   let header = createHeader(
     data.rowsTitle,
     data.uniqueColumns,
-    data.verticalTotalTitle
+    data.verticalTotalTitle,
+    data.configurator
   );
 
-  let body = [];
+  // let body;
 
-  if (data.uniqueRows) {
-    body = createBody(
-      data.uniqueRows,
-      data.uniqueColumns,
-      data.tableValues,
-      data.rowsTotal
-    );
-  }
+  // if (data.uniqueRows) {
+  //   body = createBody(
+  //     data.uniqueRows,
+  //     data.uniqueColumns,
+  //     data.tableValues,
+  //     data.rowsTotal
+  //   );
+  // } else {
+  //   body = [];
+  // }
 
   let footer = createFooter(
     data.horizontalTotalTitle,
     data.uniqueColumns,
     data.columnsTotal,
-    data.grandTotal
+    data.grandTotal,
+    data.configurator
   );
 
   $: {
     header = createHeader(
       data.rowsTitle,
       data.uniqueColumns,
-      data.verticalTotalTitle
+      data.verticalTotalTitle,
+      data.configurator
     );
 
-    if (data.uniqueRows) {
-      body = createBody(
-        data.uniqueRows,
-        data.uniqueColumns,
-        data.tableValues,
-        data.rowsTotal
-      );
-    }
+    // if (data.uniqueRows) {
+    //   body = createBody(
+    //     data.uniqueRows,
+    //     data.uniqueColumns,
+    //     data.tableValues,
+    //     data.rowsTotal
+    //   );
+    // }
 
     footer = createFooter(
       data.horizontalTotalTitle,
       data.uniqueColumns,
       data.columnsTotal,
-      data.grandTotal
+      data.grandTotal,
+      data.configurator
     );
   }
-  // console.log(header);
-  // console.log(body);
-  // console.log(footer);
 </script>
 
 <table>
@@ -69,7 +74,7 @@
     </tr>
   {/each}
 
-  {#if data.uniqueRows}
+  <!-- {#if data.uniqueRows}
     {#each body as bodyRow}
       <tr>
         {#each bodyRow as bodyItem}
@@ -77,7 +82,7 @@
         {/each}
       </tr>
     {/each}
-  {/if}
+  {/if} -->
 
   {#each footer as footerRow}
     <tr>

@@ -3,48 +3,39 @@
   export let tablePart;
   export let tableData;
 
-  import { fifthExample } from "../store.js";
+  import { sixthExample, fifthExample } from "../store.js";
 
   let pathCounter = 0;
 
-  function changeColumns(objects, path, value) {
+  function changeColumns(objects, path, value, first) {
     for (let i = 0; i < objects.length; i++) {
-      // if (!found) {
-        console.log(objects[i].path[pathCounter]);
-        console.log(path[pathCounter]);
-        console.log(pathCounter);
-        if (objects[i].path[pathCounter] === path[pathCounter]) {
-          if (pathCounter === path.length - 1) {
-            objects[i].showSubColumns = value;
-
-            fifthExample.update(n => tableData);
-            pathCounter = 0;
-          } else {
-            if (objects[i].subColumns) {
-              pathCounter++;
-              changeColumns(objects[i].subColumns, path, value);
-              // pathCounter--;
-            }
+      if (objects[i].path[pathCounter] === path[pathCounter]) {
+        if (pathCounter === path.length - 1) {
+          objects[i].showSubColumns = value;
+          sixthExample.update(n => tableData);
+          // console.log(tableData);
+        } else {
+          if (objects[i].subColumns) {
+            pathCounter++;
+            changeColumns(objects[i].subColumns, path, value);
+            pathCounter--;
           }
         }
-      // }
+      }
     }
   }
 
   function changeRows(objects, path, value) {
     for (let i = 0; i < objects.length; i++) {
-      // console.log(objects[i].path[pathCounter]);
-      // console.log(path[pathCounter]);
       if (objects[i].path[pathCounter] === path[pathCounter]) {
         if (pathCounter === path.length - 1) {
           objects[i].showSubRows = value;
-          fifthExample.update(n => tableData);
-          pathCounter = 0;
+          sixthExample.update(n => tableData);
         } else {
           if (objects[i].subRows) {
             pathCounter++;
             changeRows(objects[i].subRows, path, value);
-            // pathCounter--;
+            pathCounter--;
           }
         }
       }
@@ -72,11 +63,10 @@
         bind:checked={data.showSubRows}
         on:change={() => {
           pathCounter = 0;
-          changeRows(tableData.uniqueRows, data.path, data.showSubRows);
+          changeRows(tableData.uniqueRows, data.path, data.showSubRows, 'first');
         }} />
       <label for="scales">{data.label}</label>
     {:else}{data}{/if}
-    <!-- {data ? (data.label ? data.label : data) : ''} -->
   </td>
 {:else}
   <th>
@@ -88,10 +78,8 @@
         id="scales"
         name="scales"
         bind:checked={data.showSubColumns}
-        on:change={() => changeColumns(tableData.uniqueColumns, data.path, data.showSubColumns)} />
+        on:change={() => changeColumns(tableData.uniqueColumns, data.path, data.showSubColumns, 'first')} />
       <label for="scales">{data.label}</label>
     {:else}{data}{/if}
-    <!-- <i class="far fa-plus-square" /> -->
-
   </th>
 {/if}
