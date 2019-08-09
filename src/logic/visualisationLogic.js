@@ -97,7 +97,9 @@ function insertHeaderItemsTotals(uniqueColumn, uniqueColumnsArray, tableHeaderLa
 }
 
 function getUniqueColumnsArray(uniqueColumns, uniqueColumnsArray, tableHeaderLayer, configurator, show) {
-    for (let i = 0; i < uniqueColumns.length; i++) {
+    const length = show ? uniqueColumns.length : 1;
+
+    for (let i = 0; i < length; i++) {
         const uniqueColumn = uniqueColumns[i];
 
         insertHeaderItems(uniqueColumn, uniqueColumnsArray, tableHeaderLayer, configurator, show);
@@ -137,23 +139,25 @@ function getUniqueRowsArray(uniqueRows, uniqueRowsArray) {
 }
 
 function insertTableValue(tableValue, uniqueColumn, uniqueRow, tableValuesArray) {
+    // console.log(tableValuesCounter);
+
     if (uniqueColumn.showSubColumns) {
         for (let i = 0; i < uniqueColumn.subColumns.length; i++) {
             insertTableValue(tableValue.subColumns[i], uniqueColumn.subColumns[i], {}, tableValuesArray);
 
             if (tableValuesArray[tableValuesCounter]) {
-                tableValuesArray[tableValuesCounter].push(tableValue.value);
+                tableValuesArray[tableValuesCounter].push(...tableValue.value);
             } else {
-                tableValuesArray.push([tableValue.value]);
+                tableValuesArray.push([...tableValue.value]);
             }
         }
     }
 
     if (!uniqueColumn.showSubColumns) {
         if (tableValuesArray[tableValuesCounter]) {
-            tableValuesArray[tableValuesCounter].push(tableValue.value);
+            tableValuesArray[tableValuesCounter].push(...tableValue.value);
         } else {
-            tableValuesArray.push([tableValue.value]);
+            tableValuesArray.push([...tableValue.value]);
         }
     }
 
@@ -168,18 +172,29 @@ function insertTableValue(tableValue, uniqueColumn, uniqueRow, tableValuesArray)
 
 function getTableValuesArray(tableValues, uniqueColumns, uniqueRows) {
     const tableValuesArray = [];
-    // let tableValuesCounter = 0;
+    let tableValuesLayerCounter = 0;
 
     for (let i = 0; i < uniqueRows.length; i++) {
-        tableValuesArray.push([]);
         for (let j = 0; j < uniqueColumns.length; j++) {
+            tableValuesCounter = tableValuesLayerCounter;
+
             const currentTableValue = tableValues[i][j];
 
             if (currentTableValue.subColumns || currentTableValue.subRows) {
                 insertTableValue(currentTableValue, uniqueColumns[j], uniqueRows[i], tableValuesArray);
+                if (j === uniqueColumns.length - 1) {
+                    tableValuesLayerCounter += tableValuesCounter + 1;
+                }
+
+
                 tableValuesCounter = 0;
             } else {
-                tableValuesArray[i].push(currentTableValue.value);
+                if (tableValuesArray[i]) {
+                    tableValuesArray[i].push(...currentTableValue.value);
+                }
+                else {
+                    tableValuesArray.push(currentTableValue.value);
+                }
             }
         }
     }
@@ -233,7 +248,7 @@ function getColumnsTotalArray(columnsTotal, uniqueColumns, columnsTotalArray, co
         }
 
         if (configurator.values.length > 1) {
-            for (let j = 0; j < configurator.values.length; j++){
+            for (let j = 0; j < configurator.values.length; j++) {
                 columnsTotalArray.push(columnTotal.value[j]);
             }
         } else {

@@ -11,6 +11,13 @@ import jsonData from '../src/data/data.json';
 const firstExample = {
   title: 'Columns and Values',
 
+  configurator: {
+    filters: [],
+    columns: ['state'],
+    rows: [],
+    values: ['revenue']
+  },
+
   rowsTitle: [[null]],
 
   uniqueColumns: [
@@ -35,18 +42,18 @@ const firstExample = {
   ],
 
   columnsTotal: [
-    { value: 2544.73 },
-    { value: 2464.65 },
-    { value: 7780.57 },
-    { value: 4543 },
-    { value: 8278.07 },
-    { value: 5524.75 },
-    { value: 15329.3 },
-    { value: 6929.45 },
-    { value: 10954.7 },
-    { value: 2612 },
-    { value: 6594.03 },
-    { value: 8327.75 }
+    { value: [2544.73] },
+    { value: [2464.65] },
+    { value: [7780.57] },
+    { value: [4543] },
+    { value: [8278.07] },
+    { value: [5524.75] },
+    { value: [15329.3] },
+    { value: [6929.45] },
+    { value: [10954.7] },
+    { value: [2612] },
+    { value: [6594.03] },
+    { value: [8327.75] }
   ],
 
   grandTotal: [[81883]]
@@ -54,6 +61,13 @@ const firstExample = {
 
 const secondExample = {
   title: 'Rows and Values',
+
+  configurator: {
+    filters: [],
+    columns: ['state'],
+    rows: [],
+    values: ['revenue']
+  },
 
   rowsTitle: [
     ['Row Labels']
@@ -104,6 +118,13 @@ const secondExample = {
 
 const thirdExample = {
   title: 'Rows and a few Values',
+
+  configurator: {
+    filters: [],
+    columns: ['state'],
+    rows: [],
+    values: ['revenue', 'unit_price', 'shipping_fee']
+  },
 
   rowsTitle: [
     [null]
@@ -167,6 +188,13 @@ const thirdExample = {
 const forthExample = {
   title: 'All fields with 1 value',
 
+  configurator: {
+    filters: [],
+    columns: ['state'],
+    rows: [],
+    values: ['revenue']
+  },
+
   rowsTitle: [
     ['Row Labels']
   ],
@@ -193,11 +221,11 @@ const forthExample = {
   ],
 
   tableValues: [
-    [{ value: null }, { value: null }, { value: null }, { value: 1584 }, { value: 1628 }, { value: null }],
-    [{ value: null }, { value: null }, { value: 490 }, { value: null }, { value: null }, { value: null }],
-    [{ value: null }, { value: 460 }, { value: null }, { value: null }, { value: null }, { value: null }],
-    [{ value: null }, { value: null }, { value: null }, { value: null }, { value: null }, { value: 1821.6 }],
-    [{ value: 1619.2 }, { value: null }, { value: null }, { value: null }, { value: null }, { value: null }]
+    [{ value: [null] }, { value: [null] }, { value: [null] }, { value: [1584] }, { value: [1628] }, { value: [null] }],
+    [{ value: [null] }, { value: [null] }, { value: [490] }, { value: [null] }, { value: [null] }, { value: [null] }],
+    [{ value: [null] }, { value: [460] }, { value: [null] }, { value: [null] }, { value: [null] }, { value: [null] }],
+    [{ value: [null] }, { value: [null] }, { value: [null] }, { value: [null] }, { value: [null] }, { value: [1821.6] }],
+    [{ value: [1619.2] }, { value: [null] }, { value: [null] }, { value: [null] }, { value: [null] }, { value: [null] }]
   ],
 
   rowsTotal: [
@@ -215,12 +243,12 @@ const forthExample = {
   ],
 
   columnsTotal: [
-    { value: 1619.2 },
-    { value: 460 },
-    { value: 490 },
-    { value: 1584 },
-    { value: 1628 },
-    { value: 1821.6 }
+    { value: [1619.2] },
+    { value: [460] },
+    { value: [490] },
+    { value: [1584] },
+    { value: [1628] },
+    { value: [1821.6] }
   ],
 
   grandTotal: [
@@ -318,39 +346,39 @@ export const fifthExample = writable({
   tableValues: [
     [
       {
-        value: 810,
+        value: [810],
         subColumns: [
           {
-            value: 810,
+            value: [810],
             subColumns: [
               {
-                value: 810
+                value: [810]
               }
             ]
           }
         ],
         subRows: [
           {
-            value: 810,
+            value: [810],
             subColumns: [
               {
-                value: 810,
+                value: [810],
                 subColumns: [
                   {
-                    value: 810
+                    value: [810]
                   }
                 ]
               }
             ],
             subRows: [
               {
-                value: 810,
+                value: [810],
                 subColumns: [
                   {
-                    value: 810,
+                    value: [810],
                     subColumns: [
                       {
-                        value: 810
+                        value: [810]
                       }
                     ]
                   }
@@ -359,26 +387,26 @@ export const fifthExample = writable({
             ]
           },
           {
-            value: null,
+            value: [null],
             subColumns: [
               {
-                value: null,
+                value: [null],
                 subColumns: [
                   {
-                    value: null
+                    value: [null]
                   }
                 ]
               }
             ],
             subRows: [
               {
-                value: null,
+                value: [null],
                 subColumns: [
                   {
-                    value: null,
+                    value: [null],
                     subColumns: [
                       {
-                        value: null
+                        value: [null]
                       }
                     ]
                   }
@@ -389,39 +417,39 @@ export const fifthExample = writable({
         ]
       },
       {
-        value: 990,
+        value: [990],
         subColumns: [
           {
-            value: 990,
+            value: [990],
             subColumns: [
               {
-                value: 990
+                value: [990]
               }
             ]
           }
         ],
         subRows: [
           {
-            value: null,
+            value: [null],
             subColumns: [
               {
-                value: null,
+                value: [null],
                 subColumns: [
                   {
-                    value: null
+                    value: [null]
                   }
                 ]
               }
             ],
             subRows: [
               {
-                value: null,
+                value: [null],
                 subColumns: [
                   {
-                    value: null,
+                    value: [null],
                     subColumns: [
                       {
-                        value: null
+                        value: [null]
                       }
                     ]
                   }
@@ -430,26 +458,26 @@ export const fifthExample = writable({
             ]
           },
           {
-            value: 990,
+            value: [990],
             subColumns: [
               {
-                value: 990,
+                value: [990],
                 subColumns: [
                   {
-                    value: 990
+                    value: [990]
                   }
                 ]
               }
             ],
             subRows: [
               {
-                value: 990,
+                value: [990],
                 subColumns: [
                   {
-                    value: 990,
+                    value: [990],
                     subColumns: [
                       {
-                        value: 990
+                        value: [990]
                       }
                     ]
                   }
@@ -524,26 +552,26 @@ export const fifthExample = writable({
 
   columnsTotal: [
     {
-      value: 810,
+      value: [810],
       subColumns: [
         {
-          value: 810,
+          value: [810],
           subColumns: [
             {
-              value: 810
+              value: [810]
             }
           ]
         }
       ]
     },
     {
-      value: 990,
+      value: [990],
       subColumns: [
         {
-          value: 990,
+          value: [990],
           subColumns: [
             {
-              value: 990
+              value: [990]
             }
           ]
         }
@@ -584,45 +612,45 @@ export const sixthExample = writable({
           subColumns: [
             {
               label: 'Long Grain Rice'
-            }
+            },
           ]
         }
       ]
     },
-    // {
-    //   label: '12/10/14',
-    //   path: ['12/10/14'],
-    //   showSubColumns: true,
-    //   subColumns: [
-    //     {
-    //       label: 'Dried Fruit & Nuts',
-    //       path: ['12/10/14', 'Dried Fruit & Nuts'],
-    //       showSubColumns: true,
-    //       subColumns: [
-    //         {
-    //           label: 'Almonds'
-    //         },
-    //       ]
-    //     }
-    //   ]
-    // },
-    // {
-    //   label: '12/25/14',
-    //   path: ['12/25/14'],
-    //   showSubColumns: true,
-    //   subColumns: [
-    //     {
-    //       label: 'Baked Goods & Mixes',
-    //       path: ['12/25/14', 'Baked Goods & Mixes'],
-    //       showSubColumns: true,
-    //       subColumns: [
-    //         {
-    //           label: 'Scones'
-    //         },
-    //       ]
-    //     }
-    //   ]
-    // }
+    {
+      label: '12/10/14',
+      path: ['12/10/14'],
+      showSubColumns: true,
+      subColumns: [
+        {
+          label: 'Dried Fruit & Nuts',
+          path: ['12/10/14', 'Dried Fruit & Nuts'],
+          showSubColumns: true,
+          subColumns: [
+            {
+              label: 'Almonds'
+            },
+          ]
+        }
+      ]
+    },
+    {
+      label: '12/25/14',
+      path: ['12/25/14'],
+      showSubColumns: true,
+      subColumns: [
+        {
+          label: 'Baked Goods & Mixes',
+          path: ['12/25/14', 'Baked Goods & Mixes'],
+          showSubColumns: true,
+          subColumns: [
+            {
+              label: 'Scones'
+            },
+          ]
+        }
+      ]
+    }
   ],
 
   verticalTotalTitle: [
@@ -962,6 +990,34 @@ export const sixthExample = writable({
         ],
         subRows: [
           {
+            value: [null, null],
+            subColumns: [
+              {
+                value: [null, null],
+                subColumns: [
+                  {
+                    value: [null, null]
+                  }
+                ]
+              }
+            ],
+            subRows: [
+              {
+                value: [null, null],
+                subColumns: [
+                  {
+                    value: [null, null],
+                    subColumns: [
+                      {
+                        value: [null, null]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
             value: [990, 99],
             subColumns: [
               {
@@ -989,34 +1045,6 @@ export const sixthExample = writable({
               }
             ]
           },
-          {
-            value: [null, null],
-            subColumns: [
-              {
-                value: [null, null],
-                subColumns: [
-                  {
-                    value: [null, null]
-                  }
-                ]
-              }
-            ],
-            subRows: [
-              {
-                value: [null, null],
-                subColumns: [
-                  {
-                    value: [null, null],
-                    subColumns: [
-                      {
-                        value: [null, null]
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
         ]
       }
     ]

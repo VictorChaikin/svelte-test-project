@@ -16,18 +16,18 @@
     data.configurator
   );
 
-  // let body;
+  let body;
 
-  // if (data.uniqueRows) {
-  //   body = createBody(
-  //     data.uniqueRows,
-  //     data.uniqueColumns,
-  //     data.tableValues,
-  //     data.rowsTotal
-  //   );
-  // } else {
-  //   body = [];
-  // }
+  if (data.uniqueRows) {
+    body = createBody(
+      data.uniqueRows,
+      data.uniqueColumns,
+      data.tableValues,
+      data.rowsTotal
+    );
+  } else {
+    body = [];
+  }
 
   let footer = createFooter(
     data.horizontalTotalTitle,
@@ -45,14 +45,14 @@
       data.configurator
     );
 
-    // if (data.uniqueRows) {
-    //   body = createBody(
-    //     data.uniqueRows,
-    //     data.uniqueColumns,
-    //     data.tableValues,
-    //     data.rowsTotal
-    //   );
-    // }
+    if (data.uniqueRows) {
+      body = createBody(
+        data.uniqueRows,
+        data.uniqueColumns,
+        data.tableValues,
+        data.rowsTotal
+      );
+    }
 
     footer = createFooter(
       data.horizontalTotalTitle,
@@ -74,7 +74,7 @@
     </tr>
   {/each}
 
-  <!-- {#if data.uniqueRows}
+  {#if data.uniqueRows}
     {#each body as bodyRow}
       <tr>
         {#each bodyRow as bodyItem}
@@ -82,7 +82,7 @@
         {/each}
       </tr>
     {/each}
-  {/if} -->
+  {/if}
 
   {#each footer as footerRow}
     <tr>

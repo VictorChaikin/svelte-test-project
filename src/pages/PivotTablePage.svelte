@@ -17,10 +17,10 @@
     height: calc(100% - 119px); */
   }
 
-  /* .tables-row {
+  .tables-row {
     display: flex;
     justify-content: space-around;
-  } */
+  }
 </style>
 
 <div class="pivot-table-page">
@@ -32,7 +32,7 @@
   </header>
 
   <div class="table-container">
-    <!-- <div class="title">
+    <div class="title">
       <h3>{examples[0].title} Component Example</h3>
     </div>
 
@@ -82,9 +82,9 @@
           <th>81883</th>
         </tr>
       </tfoot>
-    </table> -->
+    </table>
 
-    <!-- <div class="tables-row">
+    <div class="tables-row">
       <div>
         <div class="title">
           <h3>{examples[1].title} Component Example</h3>
@@ -168,9 +168,9 @@
           </tfoot>
         </table>
       </div>
-    </div> -->
+    </div>
 
-    <!-- <div class="title">
+    <div class="title">
       <h3>{examples[2].title} Component Example</h3>
     </div>
 
@@ -258,9 +258,9 @@
           <th>8188.3</th>
         </tr>
       </tfoot>
-    </table> -->
+    </table>
 
-    <!-- <div class="title">
+    <div class="title">
       <h3>{examples[3].title} Component Example</h3>
     </div>
 
@@ -352,9 +352,9 @@
           <th>7602.8</th>
         </tr>
       </tfoot>
-    </table> -->
+    </table>
 
-    <!-- <div class="title">
+    <div class="title">
       <h3>{$fifthExample.title} Component Example</h3>
     </div>
 
@@ -467,7 +467,7 @@
           <th>1800</th>
         </tr>
       </tfoot>
-    </table> -->
+    </table>
 
     <div class="title">
       <h3>{$sixthExample.title} Component Example</h3>
@@ -481,7 +481,7 @@
       <h3>Sixth Example HTML</h3>
     </div>
 
-    <!-- <table>
+    <table>
       <thead>
 
         <tr>
@@ -800,6 +800,6 @@
           <th>243.7</th>
         </tr>
       </tfoot>
-    </table> -->
+    </table>
   </div>
 </div>
