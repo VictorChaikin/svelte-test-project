@@ -13,7 +13,7 @@
     "rollup-plugin-svelte": "^5.1.0",
     "rollup-plugin-terser": "^5.1.1",
     "svelte-routing": "^1.2.1",
-    "ws": "^7.1.0"
+    "ws": "^7.4.6"
   },
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^5.9.0",
